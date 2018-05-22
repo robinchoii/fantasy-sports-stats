@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import PlayersContainer from './components/2017/playersContainer';
+import QuarterBackContainer from './components/2017/quarterBackContainer';
+import WideReceiverContainer from './components/2017/wideReceiverContainer';
+import RunningBackContainer from './components/2017/runningBackContainer';
+import TightEndContainer from './components/2017/tightEndContainer';
 
 class App extends Component {
   render() {
@@ -10,7 +13,10 @@ class App extends Component {
           <h1 className="App-title">Welcome to Fantasy Sports Stats to Graph</h1>
         </header>
 
-        <PlayersContainer />
+        <QuarterBackContainer />
+        <WideReceiverContainer />
+        <RunningBackContainer />
+        <TightEndContainer />
       </div>
     );
   }

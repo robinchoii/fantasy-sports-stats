@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Player from './player';
 
 export default class playersContainer extends React.Component {
     constructor(props) {
@@ -90,6 +91,10 @@ export default class playersContainer extends React.Component {
         return (
             <div>
                 <h1>All the 2017 NFL Players</h1>
+                <Player position='QB'/>
+                <Player position='WR'/>
+                <Player position='RB'/>
+                <Player position='TE'/>
             </div>
         );
     }
