@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Quarterback from './quarterBack';
 
-export default class quarterBackContainer extends React.Component {
+export default class QuarterBackContainer extends React.Component {
     constructor(props) {
         super(props);
 
@@ -22,12 +22,12 @@ export default class quarterBackContainer extends React.Component {
               },
         };
 
-        axios.get("https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-2018-regular/active_players.json?position=qb", config)
+        axios.get("https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/cumulative_player_stats.json?position=QB", config)
             .then((response) => {
-                console.log(response.data['activeplayers'])
+                console.log(response.data['cumulativeplayerstats'])
                 let updatedQB = Object.assign({}, this.state.QB)
 
-                updatedQB = response.data['activeplayers']['playerentry']
+                updatedQB = response.data['cumulativeplayerstats']['playerstatsentry']
 
                 this.setState({
                     QB: updatedQB

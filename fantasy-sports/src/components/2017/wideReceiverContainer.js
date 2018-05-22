@@ -22,12 +22,12 @@ export default class WideReceiverContainer extends React.Component {
               },
         };
 
-        axios.get("https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-2018-regular/active_players.json?position=WR", config)
+        axios.get("https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/cumulative_player_stats.json?position=TE", config)
             .then((response) => {
-                console.log(response.data['activeplayers'])
+                console.log(response.data['cumulativeplayerstats'])
                 let updatedWR = Object.assign({}, this.state.WR)
 
-                updatedWR = response.data['activeplayers']['playerentry']
+                updatedWR = response.data['cumulativeplayerstats']['playerstatsentry']
 
                 this.setState({
                     WR: updatedWR

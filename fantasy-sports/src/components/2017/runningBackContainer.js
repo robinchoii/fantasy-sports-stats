@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import RunningBack from './runningBack';
 
-export default class runningBackContainer extends React.Component {
+export default class RunningBackContainer extends React.Component {
     constructor(props) {
         super(props);
 
@@ -12,7 +12,7 @@ export default class runningBackContainer extends React.Component {
     }
 
     componentDidMount() {
-        console.log('Quarterback container mounted!')
+        console.log('RunningBack container mounted!')
         console.log(this.state)
 
         var config = {
@@ -22,12 +22,12 @@ export default class runningBackContainer extends React.Component {
               },
         };
 
-        axios.get("https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-2018-regular/active_players.json?position=RB", config)
+        axios.get("https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/cumulative_player_stats.json?position=RB", config)
             .then((response) => {
-                console.log(response.data['activeplayers'])
+                console.log(response.data['cumulativeplayerstats'])
                 let updatedRB = Object.assign({}, this.state.RB)
 
-                updatedRB = response.data['activeplayers']['playerentry']
+                updatedRB = response.data['cumulativeplayerstats']['playerstatsentry']
 
                 this.setState({
                     RB: updatedRB

@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import TightEnd from './tightEnd';
 
-export default class WideReceiverContainer extends React.Component {
+export default class TightEndContainer extends React.Component {
     constructor(props) {
         super(props);
 
@@ -22,12 +22,12 @@ export default class WideReceiverContainer extends React.Component {
               },
         };
 
-        axios.get("https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-2018-regular/active_players.json?position=TE", config)
+        axios.get("https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/cumulative_player_stats.json?position=TE", config)
             .then((response) => {
-                console.log(response.data['activeplayers'])
+                console.log(response.data['cumulativeplayerstats'])
                 let updatedTE = Object.assign({}, this.state.TE)
 
-                updatedTE = response.data['activeplayers']['playerentry']
+                updatedTE = response.data['cumulativeplayerstats']['playerstatsentry']
 
                 this.setState({
                     TE: updatedTE
