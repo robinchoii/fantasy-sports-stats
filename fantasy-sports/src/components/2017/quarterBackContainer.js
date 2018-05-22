@@ -38,11 +38,18 @@ export default class QuarterBackContainer extends React.Component {
             })
     }
 
+
     render() {
         return (
             <div>
                 <h1>All the 2017 QB Players</h1>
-                <Quarterback position='QB'/>
+                  {this.state.QB.map((player, key) =>
+                    <Quarterback
+                        key={key}
+                        position='QB'
+                        firstname={player.player.FirstName}
+                        lastname={player.player.LastName} />
+                  )}
             </div>
         );
     }
