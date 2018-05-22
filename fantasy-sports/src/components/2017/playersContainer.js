@@ -29,7 +29,7 @@ export default class playersContainer extends React.Component {
                 console.log(response.data['activeplayers'])
                 let updatedQB = Object.assign({}, this.state.QB)
 
-                updatedQB = response.data['activeplayers']
+                updatedQB = response.data['activeplayers']['playerentry']
 
                 this.setState({
                     QB: updatedQB
@@ -44,7 +44,7 @@ export default class playersContainer extends React.Component {
                 console.log(response.data['activeplayers'])
                 let updatedWR = Object.assign({}, this.state.WR)
 
-                updatedWR = response.data['activeplayers']
+                updatedWR = response.data['activeplayers']['playerentry']
 
                 this.setState({
                     WR: updatedWR
@@ -59,7 +59,7 @@ export default class playersContainer extends React.Component {
                 console.log(response.data['activeplayers'])
                 let updatedRB = Object.assign({}, this.state.RB)
 
-                updatedRB = response.data['activeplayers']
+                updatedRB = response.data['activeplayers']['playerentry']
 
                 this.setState({
                     RB: updatedRB
@@ -74,7 +74,7 @@ export default class playersContainer extends React.Component {
                 console.log(response.data['activeplayers'])
                 let updatedTE = Object.assign({}, this.state.TE)
 
-                updatedTE = response.data['activeplayers']
+                updatedTE = response.data['activeplayers']['playerentry']
 
                 this.setState({
                     TE: updatedTE
