@@ -9,8 +9,7 @@ export default class wideReceiver extends React.Component {
     render() {
         return (
             <div>
-                <h1>{this.props.position}</h1>
-                <div>{this.props.position}</div>
+                <div>{this.props.lastname}, {this.props.firstname} </div>
             </div>
         );
     }

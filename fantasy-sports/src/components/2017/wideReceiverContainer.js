@@ -22,7 +22,7 @@ export default class WideReceiverContainer extends React.Component {
               },
         };
 
-        axios.get("https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/cumulative_player_stats.json?position=TE", config)
+        axios.get("https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/cumulative_player_stats.json?position=WR", config)
             .then((response) => {
                 console.log(response.data['cumulativeplayerstats'])
                 let updatedWR = Object.assign({}, this.state.WR)
@@ -42,7 +42,13 @@ export default class WideReceiverContainer extends React.Component {
         return (
             <div>
                 <h1>All the 2017 WR Players</h1>
-                <WideReceiver position='WR'/>
+                {this.state.WR.map( (player, key) =>
+                    <WideReceiver
+                        key={key}
+                        position='WR'
+                        firstname={player.player.FirstName}
+                        lastname={player.player.LastName} />
+                )}
             </div>
         );
     }

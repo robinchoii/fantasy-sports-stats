@@ -42,7 +42,14 @@ export default class RunningBackContainer extends React.Component {
         return (
             <div>
                 <h1>All the 2017 RB Players</h1>
-                <RunningBack position='RB'/>
+                {this.state.RB.map((player, key) =>
+                    <RunningBack
+                        key={key}
+                        position='RB'
+                        firstname={player.player.FirstName}
+                        lastname={player.player.LastName} />
+
+                    )}
             </div>
         );
     }
