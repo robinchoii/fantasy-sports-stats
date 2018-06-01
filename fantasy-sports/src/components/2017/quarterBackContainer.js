@@ -43,13 +43,36 @@ export default class QuarterBackContainer extends React.Component {
         return (
             <div>
                 <h1>All the 2017 QB Players</h1>
-                  {this.state.QB.map((player, key) =>
-                    <Quarterback
-                        key={key}
-                        position='QB'
-                        firstname={player.player.FirstName}
-                        lastname={player.player.LastName} />
-                  )}
+                <div className='table'>
+                    <div className='table-header'>
+                        <div>Last Name</div>
+                        <div>First Name</div>
+                        <div>Pass Att</div>
+                        <div>Pass Yds</div>
+                        <div>Pass TD</div>
+                        <div>Int</div>
+                        <div>Rush Att</div>
+                        <div>Rush Yds</div>
+                        <div>Rush TD</div>
+                        <div>Fum</div>
+                    </div>
+
+                      {this.state.QB.map((player, key) =>
+                        <Quarterback
+                            key={key}
+                            position='QB'
+                            firstname={player.player.FirstName}
+                            lastname={player.player.LastName}
+                            passAttempts= { player.stats.PassAttempts['#text'] }
+                            passYards= { player.stats.PassYards['#text'] }
+                            interceptions= { player.stats.PassInt['#text'] }
+                            passTD= { player.stats.PassTD['#text'] }
+                            rushAttempts= { player.stats.RushAttempts['#text'] }
+                            rushYards= { player.stats.RushYards['#text'] }
+                            rushTD= { player.stats.RushTD['#text'] }
+                            fumLost= { player.stats.FumLost['#text'] } />
+                      )}
+                </div>
             </div>
         );
     }

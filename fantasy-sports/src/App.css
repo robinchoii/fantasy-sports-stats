@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  /*text-align: center;*/
 }
 
 .App-logo {
@@ -25,4 +25,15 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+
+.table-header, .table-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr) );
+
+}
+
+.table {
+  text-align: center;
 }
