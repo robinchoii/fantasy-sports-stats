@@ -14,9 +14,7 @@ class App extends Component {
         </header>
 
         <QuarterBackContainer />
-        <WideReceiverContainer />
-        <RunningBackContainer />
-        <TightEndContainer />
+
       </div>
     );
   }
