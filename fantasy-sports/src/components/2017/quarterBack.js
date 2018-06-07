@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios'
 import QbChart from './qbChart';
 
 export default class QuarterBack extends React.Component {
@@ -11,7 +12,21 @@ export default class QuarterBack extends React.Component {
     }
 
     getPlayerStats = () => {
+        let config = {
+            auth: {
+                username: 'robinchoii',
+                password: 'fantasy123'
+              }
+        }
+
         console.log(this.props.playerID)
+        axios.get(`https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/player_gamelogs.json?player=${this.props.firstname}-${this.props.lastname}-${this.props.playerID}`, config )
+            .then( (response) =>  {
+                console.log(response)
+            })
+            .catch( (err) => {
+                console.log(err)
+            })
         this.setState({
             isSelected: true
 

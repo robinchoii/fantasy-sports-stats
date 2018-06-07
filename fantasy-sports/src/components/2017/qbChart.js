@@ -12,7 +12,7 @@ export default class qbChart extends React.Component {
     render() {
         return (
             <div>
-                <div className=''>
+                <div className='table'>
                     <div className='table-header'>
                         <div>Pass Attempts</div>
                         <div>Pass Yards</div>
@@ -33,7 +33,6 @@ export default class qbChart extends React.Component {
                         <div> { this.props.rushTD } </div>
                         <div> { this.props.fumLost } </div>
                     </div>
-
                 </div>
             </div>
         );
