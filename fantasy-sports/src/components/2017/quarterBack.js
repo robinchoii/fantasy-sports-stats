@@ -7,6 +7,7 @@ export default class QuarterBack extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            weeks: [],
             isSelected: false
         }
     }
@@ -17,19 +18,26 @@ export default class QuarterBack extends React.Component {
                 username: 'robinchoii',
                 password: 'fantasy123'
               }
-        }
+        };
+        let updatedIsSelected = Object.assign({}, this.state.isSelected);
+        updatedIsSelected = true;
 
-        console.log(this.props.playerID)
         axios.get(`https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/player_gamelogs.json?player=${this.props.firstname}-${this.props.lastname}-${this.props.playerID}`, config )
             .then( (response) =>  {
-                console.log(response)
+                let updatedWeeks = Object.assign( {}, this.state.weeks)
+                updatedWeeks = response.data.playergamelogs.gamelogs
+
+                this.setState({
+                    weeks: updatedWeeks
+                })
+
             })
             .catch( (err) => {
                 console.log(err)
             })
-        this.setState({
-            isSelected: true
 
+        this.setState({
+            isSelected: updatedIsSelected
         })
 
     }
@@ -37,7 +45,7 @@ export default class QuarterBack extends React.Component {
     render() {
         return (
             <div>
-                <h5 onClick={this.getPlayerStats}> {  this.props.firstname } { this.props.lastname } </h5>
+                <h5 onClick={this.getPlayerStats}> {this.props.firstname} {this.props.lastname} </h5>
                 { this.state.isSelected ?  (
                     <QbChart
                         passAttempts= { this.props.passAttempts }
