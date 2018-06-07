@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios'
-import QbChart from './qbChart';
+import QuarterBackTable from './quarterBackTable';
+import StatsContainer from './statsContainer';
 
 export default class QuarterBack extends React.Component {
     constructor(props) {
@@ -47,15 +48,10 @@ export default class QuarterBack extends React.Component {
             <div>
                 <h5 onClick={this.getPlayerStats}> {this.props.firstname} {this.props.lastname} </h5>
                 { this.state.isSelected ?  (
-                    <QbChart
-                        passAttempts= { this.props.passAttempts }
-                        passYards= { this.props.passYards }
-                        interceptions= { this.props.interceptions }
-                        passTD= { this.props.passTD }
-                        rushAttempts= { this.props.rushAttempts }
-                        rushYards= { this.props.rushYards }
-                        rushTD= { this.props.rushTD }
-                        fumLost= { this.props.fumLost } /> ) : ( <div /> )}
+                    <div>
+                        <StatsContainer {...this.props} />
+                    </div> ) : ( <div /> )}
+
 
             </div>
         );

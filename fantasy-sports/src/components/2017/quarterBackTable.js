@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class qbChart extends React.Component {
+export default class quarterBackTable extends React.Component {
     static propTypes = {
 
     };
