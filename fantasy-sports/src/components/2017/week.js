@@ -15,7 +15,7 @@ export default class Week extends React.Component {
             <div>
                 <div className='table'>
                     <div className='table-body'>
-                        <div> Week #</div>
+                        <div> {this.props.date} </div>
                         <div> { this.props.passAttempts } </div>
                         <div> { this.props.passYards } </div>
                         <div> { this.props.passTD } </div>
