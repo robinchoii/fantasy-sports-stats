@@ -1,5 +1,6 @@
 import React from 'react';
 import QuarterBackTable from './quarterBackTable'
+import WeekByWeek from './weekByWeekContainer'
 
 export default class statsContainer extends React.Component {
     constructor(props) {
@@ -10,6 +11,7 @@ export default class statsContainer extends React.Component {
         return (
             <div>
                 <QuarterBackTable {...this.props} />
+                <WeekByWeek {...this.props} />
             </div>
         );
     }

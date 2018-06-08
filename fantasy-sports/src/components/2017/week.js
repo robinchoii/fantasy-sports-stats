@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class quarterBackTable extends React.Component {
+
+export default class Week extends React.Component {
     static propTypes = {
-
     };
 
     constructor(props) {
@@ -13,19 +14,8 @@ export default class quarterBackTable extends React.Component {
         return (
             <div>
                 <div className='table'>
-                    <div className='table-header'>
-                        <div />
-                        <div>Pass Attempts</div>
-                        <div>Pass Yards</div>
-                        <div>Pass TD</div>
-                        <div>Int</div>
-                        <div>Rush Attempts</div>
-                        <div>Rush Yards</div>
-                        <div>Rush TD</div>
-                        <div>Fum Lost</div>
-                    </div>
                     <div className='table-body'>
-                        <div> 2017 </div>
+                        <div> Week #</div>
                         <div> { this.props.passAttempts } </div>
                         <div> { this.props.passYards } </div>
                         <div> { this.props.passTD } </div>
@@ -36,7 +26,13 @@ export default class quarterBackTable extends React.Component {
                         <div> { this.props.fumLost } </div>
                     </div>
                 </div>
+
             </div>
         );
     }
+}
+
+
+Week.propTypes = {
+
 }
