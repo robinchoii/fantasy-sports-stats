@@ -24,6 +24,7 @@ export default class Week extends React.Component {
                         <div> { this.props.rushYards } </div>
                         <div> { this.props.rushTD } </div>
                         <div> { this.props.fumLost } </div>
+                        <div> { this.props.fantasyPoints } </div>
                     </div>
                 </div>
 
