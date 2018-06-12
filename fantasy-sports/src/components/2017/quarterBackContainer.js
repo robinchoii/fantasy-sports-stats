@@ -7,7 +7,15 @@ export default class QuarterBackContainer extends React.Component {
         super(props);
 
         this.state = {
-            QB: []
+            QB: [],
+            stats:  {
+                passYards: 25,
+                passTD: 4,
+                interceptions: -1,
+                rushYards : 10,
+                rushTD: 6,
+                fumbleLost: -2,
+            }
         }
     }
 
@@ -38,27 +46,53 @@ export default class QuarterBackContainer extends React.Component {
             })
     }
 
+    getFantasyPoints = (pYds, pTD, int, rYds, rTD, fumL) => {
+        let totalPoints = 0;
+
+        totalPoints += pYds / this.state.stats.passYards
+        totalPoints += pTD * this.state.stats.passTD
+        totalPoints += int / this.state.stats.interceptions
+        totalPoints += rYds / this.state.stats.rushYards
+        totalPoints += rTD * this.state.stats.rushYards
+        totalPoints += fumL * this.state.stats.fumbleLost
+
+        return Math.ceil(totalPoints * 100) / 100
+    }
+
+
+
 
     render() {
         return (
             <div>
                 <h1>All the 2017 QB Players</h1>
 
-                {this.state.QB.map((player, key) =>
-                    <Quarterback
+                {this.state.QB.map((player, key) => {
+                    let passAttempts = player.stats.PassAttempts['#text']
+                    let passYards = player.stats.PassYards['#text']
+                    let interceptions = player.stats.PassInt['#text']
+                    let passTD = player.stats.PassTD['#text']
+                    let rushAttempts = player.stats.RushAttempts['#text']
+                    let rushYards = player.stats.RushYards['#text']
+                    let rushTD = player.stats.RushTD['#text']
+                    let fumLost = player.stats.FumLost['#text']
+
+                    return <Quarterback
                         key={key}
                         position='QB'
                         firstname={player.player.FirstName}
                         lastname={player.player.LastName}
-                        passAttempts= { player.stats.PassAttempts['#text'] }
-                        passYards= { player.stats.PassYards['#text'] }
-                        interceptions= { player.stats.PassInt['#text'] }
-                        passTD= { player.stats.PassTD['#text'] }
-                        rushAttempts= { player.stats.RushAttempts['#text'] }
-                        rushYards= { player.stats.RushYards['#text'] }
-                        rushTD= { player.stats.RushTD['#text'] }
-                        fumLost= { player.stats.FumLost['#text'] }
-                        playerID= { player.player.ID} />
+                        passAttempts= { passAttempts }
+                        passYards= { passYards }
+                        interceptions= { interceptions }
+                        passTD= { passTD }
+                        rushAttempts= { rushAttempts }
+                        rushYards= { rushYards }
+                        rushTD= { rushTD }
+                        fumLost= { fumLost }
+                        playerID= { player.player.ID}
+                        fantasyPoints = { this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost)}/>
+                }
                 )}
             </div>
         );
