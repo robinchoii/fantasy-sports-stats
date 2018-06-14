@@ -1,30 +1,32 @@
 import React from 'react';
 import Week from './week'
+import LineChart from './LineChart'
 
 export default class weekByWeekContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            stats:  {
+            settings:  {
                 passYards: 25,
                 passTD: 4,
                 interceptions: -1,
                 rushYards : 10,
                 rushTD: 6,
                 fumbleLost: -2,
-            }
+            },
+            fantasyPoints: []
         }
     }
 
     getFantasyPoints = (pYds, pTD, int, rYds, rTD, fumL) => {
         let totalPoints = 0;
 
-        totalPoints += pYds / this.state.stats.passYards
-        totalPoints += pTD * this.state.stats.passTD
-        totalPoints += int / this.state.stats.interceptions
-        totalPoints += rYds / this.state.stats.rushYards
-        totalPoints += rTD * this.state.stats.rushYards
-        totalPoints += fumL * this.state.stats.fumbleLost
+        totalPoints += pYds / this.state.settings.passYards
+        totalPoints += pTD * this.state.settings.passTD
+        totalPoints += int / this.state.settings.interceptions
+        totalPoints += rYds / this.state.settings.rushYards
+        totalPoints += rTD * this.state.settings.rushYards
+        totalPoints += fumL * this.state.settings.fumbleLost
 
         return Math.ceil(totalPoints * 100) / 100
     }
@@ -45,6 +47,8 @@ export default class weekByWeekContainer extends React.Component {
                     let rushYards = week.stats.RushYards['#text']
                     let rushTD = week.stats.RushTD['#text']
                     let fumLost = week.stats.FumLost['#text']
+                    let total = this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost)
+                    this.state.fantasyPoints.push(total)
 
                     return <Week
                         key={key}
@@ -59,6 +63,7 @@ export default class weekByWeekContainer extends React.Component {
                         fumLost= { fumLost }
                         fantasyPoints={ this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost) }/>
                 })}
+                <LineChart />
             </div>
 
         );

@@ -41,7 +41,7 @@ export default class QuarterBack extends React.Component {
         axios.get(`https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/player_gamelogs.json?player=${this.props.firstname}-${this.props.lastname}-${this.props.playerID}`, config )
             .then( (response) =>  {
                 let updatedWeeks = Object.assign( {}, this.state.weeks)
-                updatedWeeks = response.data.playergamelogs.gamelogs
+                updatedWeeks = response.data.playergamelogs['gamelogs']
 
                 this.setState({
                     weeks: updatedWeeks
