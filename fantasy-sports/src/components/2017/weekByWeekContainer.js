@@ -6,6 +6,8 @@ export default class weekByWeekContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            dates: [],
+            fantasyPoints: [],
             settings:  {
                 passYards: 25,
                 passTD: 4,
@@ -14,8 +16,31 @@ export default class weekByWeekContainer extends React.Component {
                 rushTD: 6,
                 fumbleLost: -2,
             },
-            fantasyPoints: []
+            chartData: {}
         }
+    }
+
+    componentWillMount() {
+        this.getChartData()
+    }
+
+    getChartData = () => {
+        this.setState({
+            chartData: {
+                labels: this.state.dates,
+                datasets: [
+                    {
+                        label: 'Week by Week Fantasy Points',
+                        data: this.state.fantasyPoints,
+                        fill: false,
+                        borderColor: 'blue',
+                        pointBorderColor: 'rgba(175,192,192,1)',
+                        pointBackgroundColor: '#fff',
+                        pointBorderWidth: 3,
+                    }
+                ]
+            }
+        })
     }
 
     getFantasyPoints = (pYds, pTD, int, rYds, rTD, fumL) => {
@@ -48,7 +73,11 @@ export default class weekByWeekContainer extends React.Component {
                     let rushTD = week.stats.RushTD['#text']
                     let fumLost = week.stats.FumLost['#text']
                     let total = this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost)
+                    this.state.dates.push(date.substr(5,8))
                     this.state.fantasyPoints.push(total)
+
+
+
 
                     return <Week
                         key={key}
@@ -63,7 +92,7 @@ export default class weekByWeekContainer extends React.Component {
                         fumLost= { fumLost }
                         fantasyPoints={ this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost) }/>
                 })}
-                <LineChart />
+                <LineChart data={this.state.chartData}/>
             </div>
 
         );
