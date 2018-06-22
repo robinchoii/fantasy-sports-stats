@@ -66,7 +66,10 @@ export default class QuarterBackContainer extends React.Component {
         axios.get(`https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/player_gamelogs.json?player=${first}-${last}-${ID}&&playerstats=Passing.td,Passing.att,Passing.yds,Passing.int,Rushing.att,Rushing.td,Rushing.yds,Fumbles.lost,2PT.2PTMade`, config)
             .then((response) => {
                 let updatedPlayerGameLog = Object.assign({},  this.state.playerGameLog);
+                let updatedWeeklyFantasyPoints = [];
+                let updatedDates = [];
                 updatedPlayerGameLog = response.data.playergamelogs.gamelogs
+
 
                 updatedPlayerGameLog.map(week => {
                     let date =  week.game.date
@@ -79,25 +82,27 @@ export default class QuarterBackContainer extends React.Component {
                     let rushTD = week.stats.RushTD['#text']
                     let fumLost = week.stats.FumLost['#text']
                     let total = this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost)
-                    this.state.dates.push(date.substr(5,8))
-                    this.state.weeklyFantasyPoints.push(total)
+                    updatedDates.push(date.substr(5,8))
+                    updatedWeeklyFantasyPoints.push(total)
                 })
 
                 this.setState({
                     playerGameLog: updatedPlayerGameLog,
+                    dates: updatedDates,
+                    weeklyFantasyPoints: updatedWeeklyFantasyPoints,
                     chartData: {
-                        labels: this.state.dates,
+                        labels: updatedDates,
                         datasets: [
                             {
-                                label: 'Week by Week Fantasy Points',
-                                data: this.state.weeklyFantasyPoints,
+                                label: 'Total Points',
+                                data: updatedWeeklyFantasyPoints,
                                 fill: false,
                                 borderColor: 'blue',
-                                pointBorderColor: 'rgba(175,192,192,1)',
-                                pointBackgroundColor: '#fff',
-                                pointBorderWidth: 3,
+                                pointBorderColor: 'red',
+                                pointBackgroundColor: 'red',
+                                pointBorderWidth: 5,
                             }
-                        ]
+                        ],
                     }
                 })
             })
