@@ -62,7 +62,7 @@ export default class weekByWeekContainer extends React.Component {
 
         return (
             <div>
-                {this.props.weeks.map( (week, key) => {
+                {this.props.gameLog.map( (week, key) => {
                     let date =  week.game.date
                     let passAttempts = week.stats.PassAttempts['#text']
                     let passYards = week.stats.PassYards['#text']

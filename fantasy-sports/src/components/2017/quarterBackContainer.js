@@ -51,6 +51,30 @@ export default class QuarterBackContainer extends React.Component {
             })
     }
 
+    onHandleClick = (first,last,ID) => (event) => {
+        console.log('click')
+        const config = {
+            auth: {
+                username: 'robinchoii',
+                password: 'fantasy123'
+              }
+        };
+        axios.get(`https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/player_gamelogs.json?player=${first}-${last}-${ID}&&playerstats=Passing.td,Passing.att,Passing.yds,Passing.int,Rushing.att,Rushing.td,Rushing.yds,Fumbles.lost,2PT.2PTMade`, config)
+            .then((response) => {
+                let updatedPlayerGameLog = Object.assign({},  this.state.playerGameLog);
+                let updatedIsSelected = Object.assign({}, this.state.isSelected);
+
+                updatedPlayerGameLog = response.data.playergamelogs.gamelogs
+                updatedIsSelected = true;
+
+                this.setState({
+                    playerGameLog: updatedPlayerGameLog,
+                    isSelected: updatedIsSelected
+                })
+            })
+
+    }
+
     getFantasyPoints = (pYds, pTD, int, rYds, rTD, fumL) => {
         let totalPoints = 0;
 
@@ -93,6 +117,8 @@ export default class QuarterBackContainer extends React.Component {
                         rushTD= { rushTD }
                         fumLost= { fumLost }
                         playerID= { player.player.ID}
+                        handleClick = {this.onHandleClick}
+                        gameLog = {this.state.playerGameLog}
                         fantasyPoints = { this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost)}/>
                 }
                 )}

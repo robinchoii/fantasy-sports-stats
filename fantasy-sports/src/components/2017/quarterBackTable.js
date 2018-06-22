@@ -26,7 +26,7 @@ export default class quarterBackTable extends React.Component {
                         <div>Fantasy Points</div>
                     </div>
                     <div className='table-body'>
-                        <div> 2017 </div>
+                        <div> <b> 2017 </b> </div>
                         <div> { this.props.passAttempts } </div>
                         <div> { this.props.passYards } </div>
                         <div> { this.props.passTD } </div>
