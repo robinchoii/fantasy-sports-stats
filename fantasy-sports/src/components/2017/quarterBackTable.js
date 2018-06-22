@@ -23,9 +23,10 @@ export default class quarterBackTable extends React.Component {
                         <div>Rush Yards</div>
                         <div>Rush TD</div>
                         <div>Fum Lost</div>
+                        <div>Fantasy Points</div>
                     </div>
                     <div className='table-body'>
-                        <div> 2017 </div>
+                        <div> <b> 2017 </b> </div>
                         <div> { this.props.passAttempts } </div>
                         <div> { this.props.passYards } </div>
                         <div> { this.props.passTD } </div>
@@ -34,6 +35,7 @@ export default class quarterBackTable extends React.Component {
                         <div> { this.props.rushYards } </div>
                         <div> { this.props.rushTD } </div>
                         <div> { this.props.fumLost } </div>
+                        <div> { this.props.fantasyPoints } </div>
                     </div>
                 </div>
             </div>

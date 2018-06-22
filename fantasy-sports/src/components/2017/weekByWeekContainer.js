@@ -4,27 +4,42 @@ import Week from './week'
 export default class weekByWeekContainer extends React.Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            dates: [],
+            weeklyFantasyPoints: []
+        }
     }
-
-
 
     render() {
 
         return (
             <div>
-                {this.props.weeks.map( (week, key) => {
+                {this.props.gameLog.map( (week, key) => {
+                    let date =  week.game.date
+                    let passAttempts = week.stats.PassAttempts['#text']
+                    let passYards = week.stats.PassYards['#text']
+                    let interceptions = week.stats.PassInt['#text']
+                    let passTD = week.stats.PassTD['#text']
+                    let rushAttempts = week.stats.RushAttempts['#text']
+                    let rushYards = week.stats.RushYards['#text']
+                    let rushTD = week.stats.RushTD['#text']
+                    let fumLost = week.stats.FumLost['#text']
+                    let total = this.props.onGetFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost)
+                    this.state.dates.push(date.substr(5,8))
+                    this.state.weeklyFantasyPoints.push(total)
+
                     return <Week
                         key={key}
-                        date= { week.game.date }
-                        passAttempts= { week.stats.PassAttempts['#text'] }
-                        passYards= { week.stats.PassYards['#text'] }
-                        interceptions= { week.stats.PassInt['#text'] }
-                        passTD= { week.stats.PassTD['#text'] }
-                        rushAttempts= { week.stats.RushAttempts['#text'] }
-                        rushYards= { week.stats.RushYards['#text'] }
-                        rushTD= { week.stats.RushTD['#text'] }
-                        fumLost= { week.stats.FumLost['#text'] } />
+                        date= {date}
+                        passAttempts= { passAttempts }
+                        passYards= { passYards }
+                        interceptions= { interceptions }
+                        passTD= { passTD }
+                        rushAttempts= { rushAttempts }
+                        rushYards= { rushYards }
+                        rushTD= { rushTD }
+                        fumLost= { fumLost }
+                        fantasyPoints={ this.props.onGetFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost) }/>
                 })}
             </div>
 
