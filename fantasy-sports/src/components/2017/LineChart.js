@@ -12,7 +12,6 @@ export default class LineChart extends React.Component {
             <div className='line-chart'>
                 <Line
                     data={this.props.data}
-
                 />
             </div>
         );

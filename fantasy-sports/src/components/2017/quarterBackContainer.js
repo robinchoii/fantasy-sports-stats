@@ -66,8 +66,6 @@ export default class QuarterBackContainer extends React.Component {
         axios.get(`https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/player_gamelogs.json?player=${first}-${last}-${ID}&&playerstats=Passing.td,Passing.att,Passing.yds,Passing.int,Rushing.att,Rushing.td,Rushing.yds,Fumbles.lost,2PT.2PTMade`, config)
             .then((response) => {
                 let updatedPlayerGameLog = Object.assign({},  this.state.playerGameLog);
-                let updatedIsSelected = Object.assign({}, this.state.isSelected);
-
                 updatedPlayerGameLog = response.data.playergamelogs.gamelogs
 
                 updatedPlayerGameLog.map(week => {
@@ -83,7 +81,6 @@ export default class QuarterBackContainer extends React.Component {
                     let total = this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost)
                     this.state.dates.push(date.substr(5,8))
                     this.state.weeklyFantasyPoints.push(total)
-
                 })
 
                 this.setState({
@@ -107,12 +104,6 @@ export default class QuarterBackContainer extends React.Component {
             .catch((err) => {
                 console.log(err)
             })
-    }
-
-    getChartData = () => {
-        this.setState({
-
-        })
     }
 
     getFantasyPoints = (pYds, pTD, int, rYds, rTD, fumL) => {

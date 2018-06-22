@@ -1,6 +1,5 @@
 import React from 'react';
 import Week from './week'
-import LineChart from './LineChart'
 
 export default class weekByWeekContainer extends React.Component {
     constructor(props) {

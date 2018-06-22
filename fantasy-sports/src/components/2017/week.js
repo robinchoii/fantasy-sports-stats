@@ -35,5 +35,14 @@ export default class Week extends React.Component {
 
 
 Week.propTypes = {
-
+    date: PropTypes.string,
+    passAttempts: PropTypes.string,
+    passYards: PropTypes.string,
+    interceptions: PropTypes.string,
+    passTD: PropTypes.string,
+    rushAttempts: PropTypes.string,
+    rushYards: PropTypes.string,
+    rushTD: PropTypes.string,
+    fumLost: PropTypes.string,
+    fantasyPoints: PropTypes.string
 }
