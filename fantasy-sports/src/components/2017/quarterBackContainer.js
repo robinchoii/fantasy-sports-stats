@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Quarterback from './quarterBack';
+import LineChart from './LineChart';
 
 export default class QuarterBackContainer extends React.Component {
     constructor(props) {
@@ -16,7 +17,10 @@ export default class QuarterBackContainer extends React.Component {
                 rushTD: 6,
                 fumbleLost: -2,
             },
-            playerGameLog: []
+            playerGameLog: [],
+            dates: [],
+            weeklyFantasyPoints: [],
+            chartData: {}
 
         }
     }
@@ -51,7 +55,7 @@ export default class QuarterBackContainer extends React.Component {
             })
     }
 
-    onHandleClick = (first,last,ID) => (event) => {
+    handleClick = (first,last,ID) => (event) => {
         console.log('click')
         const config = {
             auth: {
@@ -65,14 +69,50 @@ export default class QuarterBackContainer extends React.Component {
                 let updatedIsSelected = Object.assign({}, this.state.isSelected);
 
                 updatedPlayerGameLog = response.data.playergamelogs.gamelogs
-                updatedIsSelected = true;
+
+                updatedPlayerGameLog.map(week => {
+                    let date =  week.game.date
+                    let passAttempts = week.stats.PassAttempts['#text']
+                    let passYards = week.stats.PassYards['#text']
+                    let interceptions = week.stats.PassInt['#text']
+                    let passTD = week.stats.PassTD['#text']
+                    let rushAttempts = week.stats.RushAttempts['#text']
+                    let rushYards = week.stats.RushYards['#text']
+                    let rushTD = week.stats.RushTD['#text']
+                    let fumLost = week.stats.FumLost['#text']
+                    let total = this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost)
+                    this.state.dates.push(date.substr(5,8))
+                    this.state.weeklyFantasyPoints.push(total)
+
+                })
 
                 this.setState({
                     playerGameLog: updatedPlayerGameLog,
-                    isSelected: updatedIsSelected
+                    chartData: {
+                        labels: this.state.dates,
+                        datasets: [
+                            {
+                                label: 'Week by Week Fantasy Points',
+                                data: this.state.weeklyFantasyPoints,
+                                fill: false,
+                                borderColor: 'blue',
+                                pointBorderColor: 'rgba(175,192,192,1)',
+                                pointBackgroundColor: '#fff',
+                                pointBorderWidth: 3,
+                            }
+                        ]
+                    }
                 })
             })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
+    getChartData = () => {
+        this.setState({
+
+        })
     }
 
     getFantasyPoints = (pYds, pTD, int, rYds, rTD, fumL) => {
@@ -117,11 +157,14 @@ export default class QuarterBackContainer extends React.Component {
                         rushTD= { rushTD }
                         fumLost= { fumLost }
                         playerID= { player.player.ID}
-                        handleClick = {this.onHandleClick}
+                        handleClick = {this.handleClick}
                         gameLog = {this.state.playerGameLog}
+                        onGetFantasyPoints = { this.getFantasyPoints }
                         fantasyPoints = { this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost)}/>
                 }
                 )}
+
+                <LineChart data={this.state.chartData} />
             </div>
         );
     }

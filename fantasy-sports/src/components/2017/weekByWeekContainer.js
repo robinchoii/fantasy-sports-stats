@@ -7,56 +7,9 @@ export default class weekByWeekContainer extends React.Component {
         super(props);
         this.state = {
             dates: [],
-            fantasyPoints: [],
-            settings:  {
-                passYards: 25,
-                passTD: 4,
-                interceptions: -1,
-                rushYards : 10,
-                rushTD: 6,
-                fumbleLost: -2,
-            },
-            chartData: {}
+            weeklyFantasyPoints: []
         }
     }
-
-    componentWillMount() {
-        this.getChartData()
-    }
-
-    getChartData = () => {
-        this.setState({
-            chartData: {
-                labels: this.state.dates,
-                datasets: [
-                    {
-                        label: 'Week by Week Fantasy Points',
-                        data: this.state.fantasyPoints,
-                        fill: false,
-                        borderColor: 'blue',
-                        pointBorderColor: 'rgba(175,192,192,1)',
-                        pointBackgroundColor: '#fff',
-                        pointBorderWidth: 3,
-                    }
-                ]
-            }
-        })
-    }
-
-    getFantasyPoints = (pYds, pTD, int, rYds, rTD, fumL) => {
-        let totalPoints = 0;
-
-        totalPoints += pYds / this.state.settings.passYards
-        totalPoints += pTD * this.state.settings.passTD
-        totalPoints += int / this.state.settings.interceptions
-        totalPoints += rYds / this.state.settings.rushYards
-        totalPoints += rTD * this.state.settings.rushYards
-        totalPoints += fumL * this.state.settings.fumbleLost
-
-        return Math.ceil(totalPoints * 100) / 100
-    }
-
-
 
     render() {
 
@@ -72,12 +25,9 @@ export default class weekByWeekContainer extends React.Component {
                     let rushYards = week.stats.RushYards['#text']
                     let rushTD = week.stats.RushTD['#text']
                     let fumLost = week.stats.FumLost['#text']
-                    let total = this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost)
+                    let total = this.props.onGetFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost)
                     this.state.dates.push(date.substr(5,8))
-                    this.state.fantasyPoints.push(total)
-
-
-
+                    this.state.weeklyFantasyPoints.push(total)
 
                     return <Week
                         key={key}
@@ -90,9 +40,8 @@ export default class weekByWeekContainer extends React.Component {
                         rushYards= { rushYards }
                         rushTD= { rushTD }
                         fumLost= { fumLost }
-                        fantasyPoints={ this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost) }/>
+                        fantasyPoints={ this.props.onGetFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost) }/>
                 })}
-                <LineChart data={this.state.chartData}/>
             </div>
 
         );
