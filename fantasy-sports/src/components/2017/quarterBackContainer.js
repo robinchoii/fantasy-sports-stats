@@ -20,7 +20,8 @@ export default class QuarterBackContainer extends React.Component {
             playerGameLog: [],
             dates: [],
             weeklyFantasyPoints: [],
-            chartData: {}
+            chartData: {},
+            selectedPlayer: ''
 
         }
     }
@@ -124,41 +125,71 @@ export default class QuarterBackContainer extends React.Component {
         return Math.ceil(totalPoints * 100) / 100
     }
 
+    renderQuarterbackList () {
+        {this.state.QB.map((player, key) => {
+            let passAttempts = player.stats.PassAttempts['#text']
+            let passYards = player.stats.PassYards['#text']
+            let interceptions = player.stats.PassInt['#text']
+            let passTD = player.stats.PassTD['#text']
+            let rushAttempts = player.stats.RushAttempts['#text']
+            let rushYards = player.stats.RushYards['#text']
+            let rushTD = player.stats.RushTD['#text']
+            let fumLost = player.stats.FumLost['#text']
+
+            return <Quarterback
+                key={key}
+                position='QB'
+                firstname={player.player.FirstName}
+                lastname={player.player.LastName}
+                passAttempts= { passAttempts }
+                passYards= { passYards }
+                interceptions= { interceptions }
+                passTD= { passTD }
+                rushAttempts= { rushAttempts }
+                rushYards= { rushYards }
+                rushTD= { rushTD }
+                fumLost= { fumLost }
+                playerID= { player.player.ID}
+                handleClick = {this.handleClick}
+                gameLog = {this.state.playerGameLog}
+                onGetFantasyPoints = { this.getFantasyPoints }
+                fantasyPoints = { this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost)}
+                chartData = {this.state.chartData} />
+        })}
+
+    }
+
+    handleSelect = (event) => {
+        console.log(event.target.first)
+        console.log(event.target)
+
+        this.setState({
+            selectedPlayer: event.target.value
+        })
+
+    }
+
     render() {
         return (
             <div>
                 <h1>All the 2017 QB Players</h1>
                 <div>
-                    {this.state.QB.map((player, key) => {
-                        let passAttempts = player.stats.PassAttempts['#text']
-                        let passYards = player.stats.PassYards['#text']
-                        let interceptions = player.stats.PassInt['#text']
-                        let passTD = player.stats.PassTD['#text']
-                        let rushAttempts = player.stats.RushAttempts['#text']
-                        let rushYards = player.stats.RushYards['#text']
-                        let rushTD = player.stats.RushTD['#text']
-                        let fumLost = player.stats.FumLost['#text']
+                    <select value={this.state.selectedPlayer} onChange={this.handleSelect} >
+                        <option value=''>Pick a Player</option>
+                        {this.state.QB.map((player, key) => {
+                            let first = player.player.FirstName
+                            let last = player.player.LastName
+                            let playerID = player.player.ID
 
-                        return <Quarterback
-                            key={key}
-                            position='QB'
-                            firstname={player.player.FirstName}
-                            lastname={player.player.LastName}
-                            passAttempts= { passAttempts }
-                            passYards= { passYards }
-                            interceptions= { interceptions }
-                            passTD= { passTD }
-                            rushAttempts= { rushAttempts }
-                            rushYards= { rushYards }
-                            rushTD= { rushTD }
-                            fumLost= { fumLost }
-                            playerID= { player.player.ID}
-                            handleClick = {this.handleClick}
-                            gameLog = {this.state.playerGameLog}
-                            onGetFantasyPoints = { this.getFantasyPoints }
-                            fantasyPoints = { this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost)}
-                            chartData = {this.state.chartData} />
-                    })}
+                            let playerObject = {
+                                first: first,
+                                last: last,
+                                ID: playerID
+                            }
+
+                            return <option value={playerObject} first={first} last={last} id={playerID} title='hello' >{first + ' ' + last}</option>
+                        })}
+                    </select>
                 </div>
             </div>
         );
