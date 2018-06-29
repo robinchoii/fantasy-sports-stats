@@ -10,7 +10,8 @@ export default class QuarterBack extends React.Component {
             isSelected: false
         }
     }
-    onChange = () => {
+    getPlayerData = () => {
+        this.props.handleClick(this.props.firstname, this.props.lastname, this.props.playerID)()
         this.setState({
             isSelected: !this.state.isSelected
         })
@@ -19,7 +20,7 @@ export default class QuarterBack extends React.Component {
     render() {
         return (
             <div>
-                <div onClick={this.onChange}> {this.props.lastname}, {this.props.firstname} </div>
+                <div onClick={this.getPlayerData}> {this.props.lastname}, {this.props.firstname} </div>
                 { this.state.isSelected ?  (
                     <div>
                         <StatsContainer {...this.props} />

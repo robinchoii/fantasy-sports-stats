@@ -44,5 +44,5 @@ Week.propTypes = {
     rushYards: PropTypes.string,
     rushTD: PropTypes.string,
     fumLost: PropTypes.string,
-    fantasyPoints: PropTypes.string
+    fantasyPoints: PropTypes.number
 }

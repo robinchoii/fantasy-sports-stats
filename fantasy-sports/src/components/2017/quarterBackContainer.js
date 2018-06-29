@@ -128,7 +128,7 @@ export default class QuarterBackContainer extends React.Component {
         return (
             <div>
                 <h1>All the 2017 QB Players</h1>
-
+                
                 {this.state.QB.map((player, key) => {
                     let passAttempts = player.stats.PassAttempts['#text']
                     let passYards = player.stats.PassYards['#text']
