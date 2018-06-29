@@ -19,7 +19,7 @@ export default class QuarterBack extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='qb-wrapper'>
                 <div onClick={this.getPlayerData}> {this.props.lastname}, {this.props.firstname} </div>
                 { this.state.isSelected ?  (
                     <div>

@@ -30,10 +30,38 @@
 
 .table-header, .table-body {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, auto) );
+  grid-template-columns: repeat(10, 65px);
 
+}
+
+.table-header {
+    font-weight: 600;
 }
 
 .table {
   text-align: center;
+}
+
+.qb-wrapper {
+    display: grid;
+    grid-template-columns: 175px 1fr
+}
+
+.stats-container {
+    display: grid;
+    grid-template-areas: 
+        'table graph'
+        'week graph'
+}
+
+.week-by-week-container {
+    grid-area: week;
+}
+
+.qb-table-container { 
+    grid-area: table;
+}
+
+.line-chart-container {
+    grid-area: graph
 }
