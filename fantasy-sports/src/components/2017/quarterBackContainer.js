@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Quarterback from './quarterBack';
-import LineChart from './LineChart';
+import StatsContainer from './statsContainer';
 
 export default class QuarterBackContainer extends React.Component {
     constructor(props) {
@@ -71,7 +71,7 @@ export default class QuarterBackContainer extends React.Component {
                 updatedPlayerGameLog = response.data.playergamelogs.gamelogs
 
 
-                updatedPlayerGameLog.map(week => {
+                updatedPlayerGameLog.forEach(week => {
                     let date =  week.game.date
                     let passAttempts = week.stats.PassAttempts['#text']
                     let passYards = week.stats.PassYards['#text']
@@ -128,39 +128,38 @@ export default class QuarterBackContainer extends React.Component {
         return (
             <div>
                 <h1>All the 2017 QB Players</h1>
+                <div>
+                    {this.state.QB.map((player, key) => {
+                        let passAttempts = player.stats.PassAttempts['#text']
+                        let passYards = player.stats.PassYards['#text']
+                        let interceptions = player.stats.PassInt['#text']
+                        let passTD = player.stats.PassTD['#text']
+                        let rushAttempts = player.stats.RushAttempts['#text']
+                        let rushYards = player.stats.RushYards['#text']
+                        let rushTD = player.stats.RushTD['#text']
+                        let fumLost = player.stats.FumLost['#text']
 
-                {this.state.QB.map((player, key) => {
-                    let passAttempts = player.stats.PassAttempts['#text']
-                    let passYards = player.stats.PassYards['#text']
-                    let interceptions = player.stats.PassInt['#text']
-                    let passTD = player.stats.PassTD['#text']
-                    let rushAttempts = player.stats.RushAttempts['#text']
-                    let rushYards = player.stats.RushYards['#text']
-                    let rushTD = player.stats.RushTD['#text']
-                    let fumLost = player.stats.FumLost['#text']
-
-                    return <Quarterback
-                        key={key}
-                        position='QB'
-                        firstname={player.player.FirstName}
-                        lastname={player.player.LastName}
-                        passAttempts= { passAttempts }
-                        passYards= { passYards }
-                        interceptions= { interceptions }
-                        passTD= { passTD }
-                        rushAttempts= { rushAttempts }
-                        rushYards= { rushYards }
-                        rushTD= { rushTD }
-                        fumLost= { fumLost }
-                        playerID= { player.player.ID}
-                        handleClick = {this.handleClick}
-                        gameLog = {this.state.playerGameLog}
-                        onGetFantasyPoints = { this.getFantasyPoints }
-                        fantasyPoints = { this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost)}/>
-                }
-                )}
-
-                <LineChart data={this.state.chartData} />
+                        return <Quarterback
+                            key={key}
+                            position='QB'
+                            firstname={player.player.FirstName}
+                            lastname={player.player.LastName}
+                            passAttempts= { passAttempts }
+                            passYards= { passYards }
+                            interceptions= { interceptions }
+                            passTD= { passTD }
+                            rushAttempts= { rushAttempts }
+                            rushYards= { rushYards }
+                            rushTD= { rushTD }
+                            fumLost= { fumLost }
+                            playerID= { player.player.ID}
+                            handleClick = {this.handleClick}
+                            gameLog = {this.state.playerGameLog}
+                            onGetFantasyPoints = { this.getFantasyPoints }
+                            fantasyPoints = { this.getFantasyPoints(passYards, passTD, interceptions, rushYards, rushTD, fumLost)}
+                            chartData = {this.state.chartData} />
+                    })}
+                </div>
             </div>
         );
     }

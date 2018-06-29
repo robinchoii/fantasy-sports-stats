@@ -11,7 +11,7 @@ export default class quarterBackTable extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='qb-table-container'>
                 <div className='table'>
                     <div className='table-header'>
                         <div />

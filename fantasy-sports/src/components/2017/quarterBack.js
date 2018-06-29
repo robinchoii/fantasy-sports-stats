@@ -10,20 +10,17 @@ export default class QuarterBack extends React.Component {
             isSelected: false
         }
     }
-    onChange = () => {
-        let updatedIsSelected = Object.assign({}, this.state.isSelected);
-
-        updatedIsSelected = !updatedIsSelected
-
+    getPlayerData = () => {
+        this.props.handleClick(this.props.firstname, this.props.lastname, this.props.playerID)()
         this.setState({
-            isSelected: updatedIsSelected
+            isSelected: !this.state.isSelected
         })
     }
 
     render() {
         return (
-            <div>
-                <div onClick={this.props.handleClick(this.props.firstname,this.props.lastname, this.props.playerID)}> {this.props.lastname}, {this.props.firstname} </div>
+            <div className='qb-wrapper'>
+                <div onClick={this.getPlayerData}> {this.props.lastname}, {this.props.firstname} </div>
                 { this.state.isSelected ?  (
                     <div>
                         <StatsContainer {...this.props} />
