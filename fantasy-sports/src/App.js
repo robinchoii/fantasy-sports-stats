@@ -1,21 +1,33 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
 import './App.css';
 import QuarterBackContainer from './components/2017/quarterBackContainer';
 import WideReceiverContainer from './components/2017/wideReceiverContainer';
 import RunningBackContainer from './components/2017/runningBackContainer';
 import TightEndContainer from './components/2017/tightEndContainer';
+import Navigation from './components/Navigation';
+import Header from './components/Header';
+import Main from './components/Main';
+import Settings from './components/Settings';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to Fantasy Sports Stats to Graph</h1>
-        </header>
-
-        <QuarterBackContainer />
-
-      </div>
+      <BrowserRouter>
+        <div>
+          <Header />
+          <Navigation />
+          <Switch>
+            <Route path='/' component={Main} exact />
+            <Route path='/qb' component={QuarterBackContainer} />
+            <Route path='/wr' component={WideReceiverContainer} />
+            <Route path='/rb' component={RunningBackContainer} />
+            <Route path='/te' component={TightEndContainer} />
+            <Route path='/settings' component={Settings} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
