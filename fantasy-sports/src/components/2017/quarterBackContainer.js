@@ -38,7 +38,7 @@ export default class QuarterBackContainer extends React.Component {
               },
         };
 
-        axios.get("https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/cumulative_player_stats.json?position=QB&&playerstats=Passing.td,Passing.att,Passing.yds,Passing.int,Rushing.td,Rushing.att,Rushing.yds,Fumbles.lost,2PT.2PTMade", config)
+        axios.get("https://api.mysportsfeeds.com/v1.2/pull/nfl/2018-regular/cumulative_player_stats.json?position=QB&&playerstats=Passing.td,Passing.att,Passing.yds,Passing.int,Rushing.td,Rushing.att,Rushing.yds,Fumbles.lost,2PT.2PTMade", config)
             .then((response) => {
                 // console.log(response.data['cumulativeplayerstats']['playerstatsentry'])
                 let updatedQB = Object.assign({}, this.state.QB)
@@ -63,7 +63,7 @@ export default class QuarterBackContainer extends React.Component {
                 password: 'fantasy123'
               }
         };
-        axios.get(`https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/player_gamelogs.json?player=${first}-${last}-${ID}&&playerstats=Passing.td,Passing.att,Passing.yds,Passing.int,Rushing.att,Rushing.td,Rushing.yds,Fumbles.lost,2PT.2PTMade`, config)
+        axios.get(`https://api.mysportsfeeds.com/v1.2/pull/nfl/2018-regular/player_gamelogs.json?player=${first}-${last}-${ID}&&playerstats=Passing.td,Passing.att,Passing.yds,Passing.int,Rushing.att,Rushing.td,Rushing.yds,Fumbles.lost,2PT.2PTMade`, config)
             .then((response) => {
                 let updatedPlayerGameLog = Object.assign({},  this.state.playerGameLog);
                 let updatedWeeklyFantasyPoints = [];
