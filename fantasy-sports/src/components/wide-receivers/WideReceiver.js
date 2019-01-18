@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-export default class wideReceiver extends React.Component {
+export default class WideReceiver extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -16,9 +15,4 @@ export default class wideReceiver extends React.Component {
         );
     }
 
-}
-
-wideReceiver.propTypes =  {
-    position: PropTypes.string,
-    name: PropTypes.string
 }

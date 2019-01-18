@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import './App.css';
 import QuarterBackContainer from './components/2017/quarterBackContainer';
-import WideReceiverContainer from './components/2017/wideReceiverContainer';
+import WideReceiverContainer from './components/wide-receivers/WideReceiverContainer';
 import RunningBackContainer from './components/2017/runningBackContainer';
 import TightEndContainer from './components/2017/tightEndContainer';
 import Navigation from './components/Navigation';
