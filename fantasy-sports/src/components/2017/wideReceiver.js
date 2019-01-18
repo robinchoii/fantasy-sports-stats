@@ -9,7 +9,7 @@ export default class wideReceiver extends React.Component {
     render() {
         return (
             <div>
-                <div>{this.props.lastname}, {this.props.firstname} </div>
+                <div onClick={this.props.onClick} >{this.props.lastName}, {this.props.firstName} </div>
             </div>
         );
     }

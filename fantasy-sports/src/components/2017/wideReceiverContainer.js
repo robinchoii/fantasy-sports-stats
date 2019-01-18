@@ -22,7 +22,7 @@ export default class WideReceiverContainer extends React.Component {
               },
         };
 
-        axios.get("https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/cumulative_player_stats.json?position=WR", config)
+        axios.get("https://api.mysportsfeeds.com/v1.2/pull/nfl/2018-regular/cumulative_player_stats.json?position=WR", config)
             .then((response) => {
                 console.log(response.data['cumulativeplayerstats'])
                 let updatedWR = Object.assign({}, this.state.WR)
@@ -38,6 +38,23 @@ export default class WideReceiverContainer extends React.Component {
             })
     }
 
+    handleClick = (first, last, ID) => {
+        console.log('wr click');
+        const config = {
+            auth: {
+                username: 'robinchoii',
+                password: 'fantasy123'
+              }
+        };
+        // axios.get('https://api.mysportsfeeds.com/v1.2/pull/nfl/2018-regular/player_gamelogs.json?player=doug-baldwin-8292??playerstats=Receiving.Rec', config)
+        //     .then((response) => {
+        //         console.log(response.data)
+        //     })
+        //     .catch((err) => {
+        //         console.log(err)
+        //     })
+    }
+
     render() {
         return (
             <div className="main-container">
@@ -46,8 +63,10 @@ export default class WideReceiverContainer extends React.Component {
                     <WideReceiver
                         key={key}
                         position='WR'
-                        firstname={player.player.FirstName}
-                        lastname={player.player.LastName} />
+                        firstName={player.player.FirstName}
+                        lastName={player.player.LastName}
+                        playerID={player.player.ID}
+                        onClick={this.handleClick} />
                 )}
             </div>
         );
