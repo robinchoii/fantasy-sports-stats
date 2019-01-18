@@ -126,7 +126,7 @@ export default class QuarterBackContainer extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='main-container'>
                 <h1>All the 2017 QB Players</h1>
                 <div>
                     {this.state.QB.map((player, key) => {

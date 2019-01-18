@@ -40,7 +40,7 @@ export default class RunningBackContainer extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="main-container">
                 <h1>All the 2017 RB Players</h1>
                 {this.state.RB.map((player, key) =>
                     <RunningBack

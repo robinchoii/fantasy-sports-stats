@@ -15,10 +15,10 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div id="app">
           <Header />
           <Navigation />
-          <Switch>
+          <Switch >
             <Route path='/' component={Main} exact />
             <Route path='/qb' component={QuarterBackContainer} />
             <Route path='/wr' component={WideReceiverContainer} />

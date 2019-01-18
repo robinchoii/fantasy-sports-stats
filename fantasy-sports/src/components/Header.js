@@ -1,9 +1,10 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <div>
-            <h1>Fantasy Sports Stats to Graph</h1>
+        <div className='header'>
+            <NavLink to="/"><h1>Fantasy Football - Stats to Graph</h1></NavLink>
         </div>
     )
 }

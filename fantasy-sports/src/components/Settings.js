@@ -7,7 +7,7 @@ export default class Settings extends React.Component {
 
     render() {
         return (
-            <div>
+            <div >
                 <h1>Settings Component</h1>
             </div>
         );

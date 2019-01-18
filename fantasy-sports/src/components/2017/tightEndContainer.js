@@ -40,7 +40,7 @@ export default class TightEndContainer extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="main-container">
                 <h1>All the 2017 TE Players</h1>
                 {this.state.TE.map((player, key) =>
                     <TightEnd

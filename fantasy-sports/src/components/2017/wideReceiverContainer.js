@@ -40,7 +40,7 @@ export default class WideReceiverContainer extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="main-container">
                 <h1>All the 2017 WR Players</h1>
                 {this.state.WR.map( (player, key) =>
                     <WideReceiver

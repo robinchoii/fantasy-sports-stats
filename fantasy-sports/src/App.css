@@ -1,67 +1,115 @@
 .App {
-  /*text-align: center;*/
+	/*text-align: center;*/
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+	animation: App-logo-spin infinite 20s linear;
+	height: 80px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+	background-color: #222;
+	height: 150px;
+	padding: 20px;
+	color: white;
 }
 
 .App-title {
-  font-size: 1.5em;
+	font-size: 1.5em;
 }
 
 .App-intro {
-  font-size: large;
+	font-size: large;
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
 }
 
 
 .table-header, .table-body {
-  display: grid;
-  grid-template-columns: repeat(10, 65px);
+	display: grid;
+	grid-template-columns: repeat(10, 65px);
 
 }
 
 .table-header {
-    font-weight: 600;
+		font-weight: 600;
 }
 
 .table {
-  text-align: center;
+	text-align: center;
 }
 
 .qb-wrapper {
-    display: grid;
-    grid-template-columns: 175px 1fr
+		display: grid;
+		grid-template-columns: 175px 1fr
 }
 
 .stats-container {
-    display: grid;
-    grid-template-areas: 
-        'table graph'
-        'week graph'
+		display: grid;
+		grid-template-areas:
+				'table graph'
+				'week graph'
 }
 
 .week-by-week-container {
-    grid-area: week;
+		grid-area: week;
 }
 
-.qb-table-container { 
-    grid-area: table;
+.qb-table-container {
+		grid-area: table;
 }
 
 .line-chart-container {
-    grid-area: graph
+		grid-area: graph
 }
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+#root {
+	background-color: lemonchiffon;
+}
+#app {
+	display: grid;
+	grid-template-columns: repeat(6, auto);
+	grid-template-rows: auto;
+	grid-template-areas:
+		"header header header header header header"
+		"leftnav main main main main main"
+}
+
+.header {
+	grid-area: header;
+	background-color: mediumseagreen;
+	text-align: center;
+}
+
+.leftnav {
+	grid-area: leftnav;
+	width: auto;
+	background-color: #f2f2f2;
+}
+	.navlinks {
+		text-align: center;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+		.navlinks li {
+			padding: 15px;
+			border: 1px solid #4c4c4c;
+		}
+		.navlinks a {
+			font-size: 18px;
+		}
+
+.main-container {
+	padding: 15px 0px 0px 15px;
+	grid-area: main;
+}
+
