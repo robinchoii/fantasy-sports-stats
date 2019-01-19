@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class WideReceiver extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ export default class WideReceiver extends React.Component {
         return (
             <div>
                 <ul>
-                    <li onClick={this.handleGetPlayerInfo}>{this.props.lastName}, {this.props.firstName} </li>
+                    <Link to={`/wr/${this.props.firstName}-${this.props.lastName}-${this.props.playerID}`}><li onClick={this.handleGetPlayerInfo}>{this.props.lastName}, {this.props.firstName} </li></Link>
                 </ul>
             </div>
         );
