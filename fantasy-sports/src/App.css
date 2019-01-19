@@ -113,3 +113,6 @@ a {
 	grid-area: main;
 }
 
+.sub-content {
+	display: flex;
+}

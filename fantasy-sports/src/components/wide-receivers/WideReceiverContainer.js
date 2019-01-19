@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import WideReceiver from './WideReceiver';
-
+import PlayerModal from './PlayerModal';
+import { Route } from 'react-router-dom';
 
 export default class WideReceiverContainer extends React.Component {
     constructor(props) {
@@ -40,16 +41,20 @@ export default class WideReceiverContainer extends React.Component {
     render() {
         return (
             <div className='main-component'>
-                WR Component
-                <h1>2018 Wide Receivers</h1>
-                {this.state.WRs.map((player, key) =>
-                    <WideReceiver
-                        key={key}
-                        firstName={player.player.firstName}
-                        lastName={player.player.lastName}
-                        playerID={player.player.ID}
-                    />
-                )}
+                <h1>Wide Receivers from 2014-2018</h1>
+                <div className='sub-content'>
+                    <div className='wr-wrapper'>
+                        {this.state.WRs.map((player, key) =>
+                                <WideReceiver
+                                    key={key}
+                                    firstName={player.player.firstName}
+                                    lastName={player.player.lastName}
+                                    playerID={player.player.ID}
+                                />
+                        )}
+                    </div>
+                    <Route path="/wr/:first-:last-:id" component={PlayerModal} />
+                </div>
             </div>
         );
     }
