@@ -53,7 +53,7 @@ export default class WideReceiverContainer extends React.Component {
                                 />
                         )}
                     </div>
-                    <Route path="/wr/:first-:last-:id" component={PlayerModal} />
+                    <Route path="/wr/:first-:last-:id" render={(props) => <PlayerModal {...props} /> } />
                 </div>
             </div>
         );
