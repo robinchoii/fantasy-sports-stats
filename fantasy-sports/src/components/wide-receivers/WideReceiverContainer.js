@@ -29,13 +29,15 @@ export default class WideReceiverContainer extends React.Component {
                 this.setState({
                     WRs: updatedWRs
                 })
-
-
         })
             .catch((err) => {
                 console.log(err)
         })
+    }
 
+    handleOnClick = (first, last, id) => {
+        console.log('wr click');
+        console.log(first, last, id)
     }
 
     render() {
@@ -49,7 +51,8 @@ export default class WideReceiverContainer extends React.Component {
                                     key={key}
                                     firstName={player.player.firstName}
                                     lastName={player.player.lastName}
-                                    playerID={player.player.ID}
+                                    playerID={player.player.id}
+                                    getPlayerInfo={this.handleOnClick}
                                 />
                         )}
                     </div>
