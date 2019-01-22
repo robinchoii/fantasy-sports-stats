@@ -23,31 +23,33 @@ export default class WideReceiverContainer extends React.Component {
 
         axios.get("https://api.mysportsfeeds.com/v2.0/pull/nfl/players.json?season=2014-regular-2018-regular&position=wr", config)
             .then((response) => {
-                // let updatedWRs = Object.assign([], this.state.WR);
+                let updatedWRs = Object.assign([], this.state.WR);
 
-                // response.data.players.filter((player) => player.player.primaryPosition === 'WR').map((player,key) => {
-                //     let receiver = {}
+                response.data.players.filter((player) => player.player.primaryPosition === 'WR').map((player,key) => {
+                    let receiver = {}
 
-                //     receiver.key = key
-                //     receiver.firstName = player.player.firstName
-                //     receiver.lastName = player.player.lastName
-                //     receiver.id = player.player.id
+                    receiver.key = key
+                    receiver.firstName = player.player.firstName
+                    receiver.lastName = player.player.lastName
+                    receiver.id = player.player.id
+                    // receiver.gamelogs = {}
 
-                //     updatedWRs.push(receiver);
-                // });
+                    updatedWRs.push(receiver);
+                });
 
                 // console.log(updatedWRs)
 
-                // this.setState({
-                //     WRs: updatedWRs
-                // })
-
-
                 this.setState({
-                    WRs: [{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs: {}},{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs:{}}]
+                    WRs: updatedWRs
                 })
-                return [{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs: {}},{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs: {}}]
-                // return updatedWRs
+                return updatedWRs
+
+
+                // this.setState({
+                //     WRs: [{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs: {}},{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs:{}}]
+                // })
+                // return [{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs: {}},{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs: {}}]
+
             })
             // .then((response) => {
             //     console.log(response)
