@@ -8,19 +8,27 @@ class PlayerModal extends Component {
     super(props)
         this.state = {
             selectedYear: '',
-
+            gamelogs: []
         }
     }
 
-    handleYearChange = (year) => {
-        this.props
-        this.setState({
-            selectedYear: year
-        })
+    handleYearChange = (year, first, last, id) => {
 
+        let updatedGamelogs = Object.assign({},this.state.gamelogs);
+
+        updatedGamelogs = this.props.getPlayerGamelog(year, first, last, id)
+
+        updatedGamelogs
+            .then((gamelogsUpdated) => {
+                this.setState({
+                    gamelogs: gamelogsUpdated,
+                    selectedYear: year
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
-
-
 
     render() {
 
@@ -29,11 +37,11 @@ class PlayerModal extends Component {
         return (
             <div>
                 <ul>
-                    {this.props.years.map((year,key) => <Link to={`/wr/${first}-${last}-${id}/${year}`} key={key} onClick={() => this.handleYearChange(year)}><li >{year}</li></Link>)}
+                    {this.props.years.map((year,key) => <Link to={`/wr/${first}-${last}-${id}/${year}`} key={key} onClick={() => this.handleYearChange(year, first, last, id)}><li>{year}</li></Link>)}
                 </ul>
                 {first} {last} {id}
 
-                <Route path="/wr/:first-:last-:id/:year" render={(props) => <StatsContainer {...props} years={this.props.years} getPlayerGamelog={this.props.getPlayerGamelog} selectedYear={this.state.selectedYear} /> } />
+                <Route path="/wr/:first-:last-:id/:year" render={(props) => <StatsContainer {...props} years={this.props.years} gamelogs={this.state.gamelogs} selectedYear={this.state.selectedYear} /> } />
             </div>
         )
     }

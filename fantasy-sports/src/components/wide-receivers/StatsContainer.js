@@ -6,21 +6,11 @@ class StatsContainer extends Component {
         super(props)
         this.state = {
             year: this.props.selectedYear,
-            gamelogs: []
         }
     }
 
     componentDidMount = () => {
-        console.log('stats mounted')
-        let updatedGamelogs = Object.assign({},this.state.gamelogs);
-
-        updatedGamelogs = this.props.getPlayerGamelog(this.state.year, this.props.match.params.first, this.props.match.params.last, this.props.match.params.id)
-
-        updatedGamelogs.then((val) => {
-            this.setState({
-                gamelogs: val
-            });
-        });
+        console.log('stats container mounted')
     }
 
     render() {
