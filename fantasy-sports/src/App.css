@@ -116,3 +116,7 @@ a {
 .sub-content {
 	display: flex;
 }
+
+.table-header, .table-body {
+	grid-template-columns: repeat(12, 65px);
+}
