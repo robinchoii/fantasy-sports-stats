@@ -9,7 +9,7 @@ export default class WideReceiverContainer extends React.Component {
         super(props);
         this.state = {
             WRs: [],
-            selectedWR: {}
+            years: ['2014','2015','2016','2017', '2018'],
         }
     }
 
@@ -23,17 +23,55 @@ export default class WideReceiverContainer extends React.Component {
 
         axios.get("https://api.mysportsfeeds.com/v2.0/pull/nfl/players.json?season=2014-regular-2018-regular&position=wr", config)
             .then((response) => {
-                let updatedWRs = Object.assign([], this.state.WR)
-                updatedWRs = response.data.players.filter((player) => player.player.primaryPosition === 'WR');
-                console.log(updatedWRs)
+                // let updatedWRs = Object.assign([], this.state.WR);
+
+                // response.data.players.filter((player) => player.player.primaryPosition === 'WR').map((player,key) => {
+                //     let receiver = {}
+
+                //     receiver.key = key
+                //     receiver.firstName = player.player.firstName
+                //     receiver.lastName = player.player.lastName
+                //     receiver.id = player.player.id
+
+                //     updatedWRs.push(receiver);
+                // });
+
+                // console.log(updatedWRs)
+
+                // this.setState({
+                //     WRs: updatedWRs
+                // })
+
 
                 this.setState({
-                    WRs: updatedWRs
+                    WRs: [{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs: {}},{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs:{}}]
                 })
-        })
+                return [{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs: {}},{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs: {}}]
+                // return updatedWRs
+            })
+            // .then((response) => {
+            //     console.log(response)
+            //     response.map((player,key) => {
+            //         let { firstName, lastName ,id } = player;
+
+            //         this.state.years.map((year) => {
+            //             player.gamelogs.year = this.getPlayerGamelog(year, firstName, lastName, id).bind(this);
+
+            //         })
+
+            //         console.log(this.props)
+            //         console.log(firstName +  lastName)
+            //         console.log(this.getPlayerGamelog(2014,firstName, lastName,id));
+            //         console.log(this.state)
+            //         console.log(this.getPlayerGamelog(2014, "doug", "baldwin", 8292));
+
+            //         player.gamelogs['2014'] = this.getPlayerGamelog(2014, firstName, lastName, id);
+            //         console.log(firstName,lastName,id)
+            //     })
+            // })
             .catch((err) => {
                 console.log(err)
-        })
+            })
     }
 
     handleOnClick = (first, last, id) => {
@@ -48,6 +86,7 @@ export default class WideReceiverContainer extends React.Component {
 
         axios.get(`https://api.mysportsfeeds.com/v2.0/pull/nfl/2018-regular/player_gamelogs.json?player=${first}-${last}-${id}`, config)
             .then((response) => {
+                // console.log(localStorage)
                 // console.log(response.data)
                 let updatedSelectedWR = Object.assign({}, this.state.selectedWR);
                 updatedSelectedWR = response.data
@@ -59,6 +98,28 @@ export default class WideReceiverContainer extends React.Component {
             })
     }
 
+    getPlayerGamelog = (year, first, last, id) => {
+        console.log("getting game logs")
+
+        let config = {
+            auth: {
+                username: 'e1c3c9b7-346a-4e73-a4ea-dc799d',
+                password: 'MYSPORTSFEEDS'
+              },
+        };
+
+        return axios.get(`https://api.mysportsfeeds.com/v2.0/pull/nfl/${year}-regular/player_gamelogs.json?player=${first}-${last}-${id}`, config)
+            .then((response) => {
+                let updatedGamelogs = Object.assign({}, this.state.gamelogs);
+                updatedGamelogs = response.data.gamelogs
+
+                return updatedGamelogs
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+    }
     render() {
         return (
             <div className='main-component'>
@@ -68,14 +129,15 @@ export default class WideReceiverContainer extends React.Component {
                         {this.state.WRs.map((player, key) =>
                                 <WideReceiver
                                     key={key}
-                                    firstName={player.player.firstName}
-                                    lastName={player.player.lastName}
-                                    playerID={player.player.id}
+                                    firstName={player.firstName}
+                                    lastName={player.lastName}
+                                    playerID={player.id}
                                     getPlayerInfo={this.handleOnClick}
+                                    getPlayerGameLog={this.handleGetPlayerGamelog}
                                 />
                         )}
                     </div>
-                    <Route path="/wr/:first-:last-:id" render={(props) => <PlayerModal {...props} /> } />
+                    <Route path="/wr/:first-:last-:id" render={(props) => <PlayerModal {...props} getPlayerGamelog={this.getPlayerGamelog} years={this.state.years} /> } />
                 </div>
             </div>
         );
