@@ -110,7 +110,7 @@ export default class WideReceiverContainer extends React.Component {
               },
         };
 
-        return axios.get(`https://api.mysportsfeeds.com/v2.0/pull/nfl/${year}-regular/player_gamelogs.json?player=${first}-${last}-${id}`, config)
+        return axios.get(`https://api.mysportsfeeds.com/v2.0/pull/nfl/${year}-regular/player_gamelogs.json?player=${first}-${last}-${id}&stats=Passing.yds,Passing.td,Passing.int,Receiving.tgt,Receiving.rec,Receiving.yds,Receiving.td,Rushing.yds,Rushing.td,Fumbles.Lost,2PT.2PTMade`, config)
             .then((response) => {
                 let updatedGamelogs = Object.assign({}, this.state.gamelogs);
                 updatedGamelogs = response.data.gamelogs
