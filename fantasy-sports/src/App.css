@@ -118,5 +118,29 @@ a {
 }
 
 .table-header, .table-body {
-	grid-template-columns: repeat(12, 65px);
+	grid-template-columns: repeat(13, 65px);
+	font-size: 12px;
+}
+
+.table-category {
+	display: grid;
+	grid-template-columns: repeat(13, 65px);
+	text-align: center;
+}
+
+#passing {
+	grid-column: 2/5;
+	background-color: red;
+}
+#receiving {
+	grid-column: 5/9;
+	background-color: blue;
+}
+#rushing {
+	grid-column: 9/11;
+	background-color: green;
+}
+#misc {
+	grid-column: 11/-1;
+	background-color: orange;
 }
