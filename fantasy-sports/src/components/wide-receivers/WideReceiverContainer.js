@@ -10,6 +10,18 @@ export default class WideReceiverContainer extends React.Component {
         this.state = {
             WRs: [],
             years: ['2014','2015','2016','2017', '2018'],
+            scoring:  {
+                passYd: 25,
+                passTD: 4,
+                int: -1,
+                reception: .5,
+                recYd: 10,
+                recTD: 6,
+                rushYd : 10,
+                rushTD: 6,
+                fumbleLost: -2,
+                twoPoint: 2
+            },
         }
     }
 
@@ -37,40 +49,12 @@ export default class WideReceiverContainer extends React.Component {
                     updatedWRs.push(receiver);
                 });
 
-                // console.log(updatedWRs)
-
                 this.setState({
                     WRs: updatedWRs
                 })
                 return updatedWRs
 
-
-                // this.setState({
-                //     WRs: [{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs: {}},{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs:{}}]
-                // })
-                // return [{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs: {}},{firstName: 'doug', lastName: 'baldwin', id:8292, gamelogs: {}}]
-
             })
-            // .then((response) => {
-            //     console.log(response)
-            //     response.map((player,key) => {
-            //         let { firstName, lastName ,id } = player;
-
-            //         this.state.years.map((year) => {
-            //             player.gamelogs.year = this.getPlayerGamelog(year, firstName, lastName, id).bind(this);
-
-            //         })
-
-            //         console.log(this.props)
-            //         console.log(firstName +  lastName)
-            //         console.log(this.getPlayerGamelog(2014,firstName, lastName,id));
-            //         console.log(this.state)
-            //         console.log(this.getPlayerGamelog(2014, "doug", "baldwin", 8292));
-
-            //         player.gamelogs['2014'] = this.getPlayerGamelog(2014, firstName, lastName, id);
-            //         console.log(firstName,lastName,id)
-            //     })
-            // })
             .catch((err) => {
                 console.log(err)
             })
@@ -79,28 +63,21 @@ export default class WideReceiverContainer extends React.Component {
         console.log('unmounting')
     }
 
-    handleOnClick = (first, last, id) => {
-        console.log('wr click');
-        console.log(first, last, id)
-        // let config = {
-        //     auth: {
-        //         username: 'e1c3c9b7-346a-4e73-a4ea-dc799d',
-        //         password: 'MYSPORTSFEEDS'
-        //       },
-        // };
+   convertToFantasyPoints = (passYds, passTds, int, rec, recYds, recTds, rushYds, rushTds, fumLost, twoPoint ) => {
+        let fantasyPoints = 0;
 
-        // axios.get(`https://api.mysportsfeeds.com/v2.0/pull/nfl/2018-regular/player_gamelogs.json?player=${first}-${last}-${id}`, config)
-        //     .then((response) => {
-        //         // console.log(localStorage)
-        //         // console.log(response.data)
-        //         let updatedSelectedWR = Object.assign({}, this.state.selectedWR);
-        //         updatedSelectedWR = response.data
+        fantasyPoints += passYds / this.state.scoring.passYd;
+        fantasyPoints += passTds * this.state.scoring.passTD;
+        fantasyPoints += int * this.state.scoring.int;
+        fantasyPoints += rec * this.state.scoring.reception;
+        fantasyPoints += recYds / this.state.scoring.recYd;
+        fantasyPoints += recTds * this.state.scoring.recTD;
+        fantasyPoints += rushYds / this.state.scoring.rushYd;
+        fantasyPoints += rushTds * this.state.scoring.rushTD;
+        fantasyPoints += fumLost * this.state.scoring.fumbleLost;
+        fantasyPoints += twoPoint * this.state.scoring.twoPoint;
 
-        //         console.log(updatedSelectedWR)
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     })
+        return Math.ceil(fantasyPoints * 100) / 100;
     }
 
     getPlayerGamelog = (year, first, last, id) => {
@@ -137,12 +114,11 @@ export default class WideReceiverContainer extends React.Component {
                                     firstName={player.firstName}
                                     lastName={player.lastName}
                                     playerID={player.id}
-                                    getPlayerInfo={this.handleOnClick}
                                     getPlayerGameLog={this.handleGetPlayerGamelog}
                                 />
                         )}
                     </div>
-                    <Route path="/wr/:first-:last-:id" render={(props) => <PlayerModal {...props} getPlayerGamelog={this.getPlayerGamelog} years={this.state.years} /> } />
+                    <Route path="/wr/:first-:last-:id" render={(props) => <PlayerModal {...props} getPlayerGamelog={this.getPlayerGamelog} convertToFantasyPoints={this.convertToFantasyPoints} years={this.state.years} /> } />
                 </div>
             </div>
         );

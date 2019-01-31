@@ -5,41 +5,15 @@ class StatsContainer extends Component {
         super(props)
         this.state = {
             year: this.props.selectedYear,
-            scoring:  {
-                passYd: 25,
-                passTD: 4,
-                int: -1,
-                reception: .5,
-                recYd: 10,
-                recTD: 6,
-                rushYd : 10,
-                rushTD: 6,
-                fumbleLost: -2,
-                twoPoint: 2
-            },
-            weeklyFantasyPointsArr: []
+            weeklyFantasyPointsArr: [],
         }
     }
 
-    componentDidMount = () => {
+    componentDidMount = (props) => {
         console.log('stats container mounted')
     }
-
-    convertToFantasyPoints = (passYds, passTds, int, rec, recYds, recTds, rushYds, rushTds, fumLost, twoPoint ) => {
-        let fantasyPoints = 0;
-
-        fantasyPoints += passYds / this.state.scoring.passYd;
-        fantasyPoints += passYds * this.state.scoring.passTD;
-        fantasyPoints += int * this.state.scoring.int;
-        fantasyPoints += rec * this.state.scoring.reception;
-        fantasyPoints += recYds / this.state.scoring.recYd;
-        fantasyPoints += recTds * this.state.scoring.recTD;
-        fantasyPoints += rushYds / this.state.scoring.rushYd;
-        fantasyPoints += rushTds * this.state.scoring.rushTD;
-        fantasyPoints += fumLost * this.state.scoring.fumbleLost;
-        fantasyPoints += twoPoint * this.state.scoring.twoPoint;
-
-        return Math.ceil(fantasyPoints * 100) / 100;
+    componentWillUnmount = () => {
+        console.log('uncounting')
     }
 
     render() {
@@ -95,7 +69,7 @@ class StatsContainer extends Component {
                         let fumLost= game.stats.fumbles.fumLost
                         let twoPtMade = game.stats.twoPointAttempts.twoPtMade
 
-                        let weeklyFantasyPoints = this.convertToFantasyPoints(passYds,passTds,int, receptions, recYds, recTds, rushYds, rushTds, fumLost, twoPtMade)
+                        let weeklyFantasyPoints = this.props.convertToFantasyPoints(passYds,passTds,int, receptions, recYds, recTds, rushYds, rushTds, fumLost, twoPtMade)
 
                         totalPts += weeklyFantasyPoints;
                         totalPassYds +=passYds;

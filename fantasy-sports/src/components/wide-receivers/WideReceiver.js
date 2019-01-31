@@ -14,7 +14,7 @@ export default class WideReceiver extends React.Component {
         return (
             <div>
                 <ul>
-                    <Link to={`/wr/${this.props.firstName}-${this.props.lastName}-${this.props.playerID}`}><li onClick={this.handleGetPlayerInfo}>{this.props.lastName}, {this.props.firstName} </li></Link>
+                    <Link to={`/wr/${this.props.firstName}-${this.props.lastName}-${this.props.playerID}`}><li>{this.props.lastName}, {this.props.firstName} </li></Link>
                 </ul>
             </div>
         );
