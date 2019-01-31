@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-// import LineChart from '../LineChart';
-import { LineChart } from 'react-easy-chart';
-
-
+import { Line } from 'react-chartjs-2'
 
 class StatsContainer extends Component {
     constructor(props) {
@@ -10,6 +7,20 @@ class StatsContainer extends Component {
         this.state = {
             year: this.props.selectedYear,
             weeklyFantasyPointsArr: [],
+            chartData: {
+                labels: [],
+                datasets: [
+                    {
+                        label: 'Total Points',
+                        data: [],
+                        fill: false,
+                        borderColor: 'blue',
+                        pointBorderColor: 'red',
+                        pointBackgroundColor: 'red',
+                        pointBorderWidth: 5,
+                    }
+                ],
+            }
         }
     }
 
@@ -18,6 +29,12 @@ class StatsContainer extends Component {
     }
     componentWillUnmount = () => {
         console.log('uncounting')
+    }
+
+    getChartData = (weeks,points) => {
+        let updatedChartData = Object.assign({}, this.state.chartData)
+
+        console.log(updatedChartData.labels)
     }
 
     render() {
@@ -33,6 +50,23 @@ class StatsContainer extends Component {
         let totalRushTds = 0;
         let totalFumLost= 0;
         let totalTwoPtMade = 0;
+        let weeksPlayed = [];
+        let chartData: {
+            labels: weeksPlayed,
+            datasets: [
+                {
+                    label: 'Total Points',
+                    data: state.weeklyFantasyPointsArr,
+                    fill: false,
+                    borderColor: 'blue',
+                    pointBorderColor: 'red',
+                    pointBackgroundColor: 'red',
+                    pointBorderWidth: 5,
+                }
+            ],
+        }
+
+        this.getChartData()
 
         return (
             <div>
@@ -87,9 +121,11 @@ class StatsContainer extends Component {
                         totalRushTds +=rushTds;
                         totalFumLost += fumLost;
                         totalTwoPtMade +=twoPtMade;
+                        this.state.chartData.labels.push(week);
+                        this.state.chartData.datasets.data.push(weeklyFantasyPoints)
 
-                        let dataPoints = {week: week, points: weeklyFantasyPoints}
-                        this.state.weeklyFantasyPointsArr.push(dataPoints)
+                        // let dataPoints = {week: week, points: weeklyFantasyPoints}
+                        // this.state.weeklyFantasyPointsArr.push(dataPoints)
 
                         return (
                             <div key={key} className="table-body">
@@ -127,17 +163,7 @@ class StatsContainer extends Component {
                 </div>
                 <div>
                     <h1>GRAPH</h1>
-                    <LineChart
-                    dataPoints
-                    data={[
-                      [
-                        { x: 1, y: 10 },
-                        { x: 2, y: 15 },
-                        { x: 3, y: 25 },
-                        { x: 4, y: 20 },
-                        { x: 5, y: 28 }
-                      ]
-                    ]} />
+                    <Line />
                 </div>
             </div>
         );
