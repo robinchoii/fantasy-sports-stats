@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+// import LineChart from '../LineChart';
+import { LineChart } from 'react-easy-chart';
+
+
 
 class StatsContainer extends Component {
     constructor(props) {
@@ -123,6 +127,17 @@ class StatsContainer extends Component {
                 </div>
                 <div>
                     <h1>GRAPH</h1>
+                    <LineChart
+                    dataPoints
+                    data={[
+                      [
+                        { x: 1, y: 10 },
+                        { x: 2, y: 15 },
+                        { x: 3, y: 25 },
+                        { x: 4, y: 20 },
+                        { x: 5, y: 28 }
+                      ]
+                    ]} />
                 </div>
             </div>
         );
