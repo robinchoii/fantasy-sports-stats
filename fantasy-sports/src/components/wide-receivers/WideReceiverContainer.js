@@ -75,29 +75,32 @@ export default class WideReceiverContainer extends React.Component {
                 console.log(err)
             })
     }
+    componentWillUnmount = () => {
+        console.log('unmounting')
+    }
 
     handleOnClick = (first, last, id) => {
         console.log('wr click');
         console.log(first, last, id)
-        let config = {
-            auth: {
-                username: 'e1c3c9b7-346a-4e73-a4ea-dc799d',
-                password: 'MYSPORTSFEEDS'
-              },
-        };
+        // let config = {
+        //     auth: {
+        //         username: 'e1c3c9b7-346a-4e73-a4ea-dc799d',
+        //         password: 'MYSPORTSFEEDS'
+        //       },
+        // };
 
-        axios.get(`https://api.mysportsfeeds.com/v2.0/pull/nfl/2018-regular/player_gamelogs.json?player=${first}-${last}-${id}`, config)
-            .then((response) => {
-                // console.log(localStorage)
-                // console.log(response.data)
-                let updatedSelectedWR = Object.assign({}, this.state.selectedWR);
-                updatedSelectedWR = response.data
+        // axios.get(`https://api.mysportsfeeds.com/v2.0/pull/nfl/2018-regular/player_gamelogs.json?player=${first}-${last}-${id}`, config)
+        //     .then((response) => {
+        //         // console.log(localStorage)
+        //         // console.log(response.data)
+        //         let updatedSelectedWR = Object.assign({}, this.state.selectedWR);
+        //         updatedSelectedWR = response.data
 
-                console.log(updatedSelectedWR)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+        //         console.log(updatedSelectedWR)
+        //     })
+        //     .catch((err) => {
+        //         console.log(err)
+        //     })
     }
 
     getPlayerGamelog = (year, first, last, id) => {

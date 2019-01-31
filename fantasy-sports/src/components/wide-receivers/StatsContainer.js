@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 
 class StatsContainer extends Component {
     constructor(props) {
@@ -18,6 +17,7 @@ class StatsContainer extends Component {
                 fumbleLost: -2,
                 twoPoint: 2
             },
+            weeklyFantasyPointsArr: []
         }
     }
 
@@ -27,6 +27,7 @@ class StatsContainer extends Component {
 
     convertToFantasyPoints = (passYds, passTds, int, rec, recYds, recTds, rushYds, rushTds, fumLost, twoPoint ) => {
         let fantasyPoints = 0;
+
         fantasyPoints += passYds / this.state.scoring.passYd;
         fantasyPoints += passYds * this.state.scoring.passTD;
         fantasyPoints += int * this.state.scoring.int;
@@ -42,14 +43,23 @@ class StatsContainer extends Component {
     }
 
     render() {
+        let totalPts = 0;
+        let totalPassYds = 0;
+        let totalInt = 0;
+        let totalPassTds = 0;
+        let totalTargets = 0;
+        let totalReceptions = 0;
+        let totalRecYds = 0;
+        let totalRecTds = 0;
+        let totalRushYds = 0;
+        let totalRushTds = 0;
+        let totalFumLost= 0;
+        let totalTwoPtMade = 0;
+
         return (
             <div>
-                <div>stats from {this.props.match.params.year} </div>
-                <div>stats from {this.props.match.params.first} </div>
-                <div>stats from {this.props.match.params.last} </div>
-                <div>stats from {this.props.match.params.id} </div>
                 <div>
-                    <div class="table-category">
+                    <div className="table-category">
                         <div></div>
                         <div id="passing">Passing</div>
                         <div id="receiving">Receiving</div>
@@ -67,7 +77,7 @@ class StatsContainer extends Component {
                         <div>TD</div>
                         <div>Yds</div>
                         <div>TD</div>
-                        <div>Fum Lost</div>
+                        <div>FumL</div>
                         <div>2-PT</div>
                         <div>Fan Pts</div>
                     </div>
@@ -87,6 +97,22 @@ class StatsContainer extends Component {
 
                         let weeklyFantasyPoints = this.convertToFantasyPoints(passYds,passTds,int, receptions, recYds, recTds, rushYds, rushTds, fumLost, twoPtMade)
 
+                        totalPts += weeklyFantasyPoints;
+                        totalPassYds +=passYds;
+                        totalInt +=int;
+                        totalPassTds +=passTds;
+                        totalTargets +=targets;
+                        totalReceptions +=receptions;
+                        totalRecYds +=recYds;
+                        totalRecTds +=recTds;
+                        totalRushYds +=rushYds;
+                        totalRushTds +=rushTds;
+                        totalFumLost += fumLost;
+                        totalTwoPtMade +=twoPtMade;
+
+                        let dataPoints = {week: week, points: weeklyFantasyPoints}
+                        this.state.weeklyFantasyPointsArr.push(dataPoints)
+
                         return (
                             <div key={key} className="table-body">
                                 <div>{week}</div>
@@ -105,10 +131,28 @@ class StatsContainer extends Component {
                             </div>
                         )
                     })}
+                    <div className='table-body'>
+                        <div>Totals</div>
+                        <div>{ totalPassYds }</div>
+                        <div>{ totalInt }</div>
+                        <div>{ totalPassTds }</div>
+                        <div>{ totalTargets }</div>
+                        <div>{ totalReceptions }</div>
+                        <div>{ totalRecYds }</div>
+                        <div>{ totalRecTds }</div>
+                        <div>{ totalRushYds }</div>
+                        <div>{ totalRushTds }</div>
+                        <div>{ totalFumLost }</div>
+                        <div>{ totalTwoPtMade }</div>
+                        <div>{ Math.ceil(totalPts * 100) / 100 }</div>
+                    </div>
+                </div>
+                <div>
+                    <h1>GRAPH</h1>
                 </div>
             </div>
         );
-}
+    }
 }
 
 export default StatsContainer;

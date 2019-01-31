@@ -118,13 +118,13 @@ a {
 }
 
 .table-header, .table-body {
-	grid-template-columns: repeat(13, 65px);
+	grid-template-columns: repeat(13, 45px);
 	font-size: 12px;
 }
 
 .table-category {
 	display: grid;
-	grid-template-columns: repeat(13, 65px);
+	grid-template-columns: repeat(13, 45px);
 	text-align: center;
 }
 
