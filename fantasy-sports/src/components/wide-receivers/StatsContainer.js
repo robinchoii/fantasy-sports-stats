@@ -121,12 +121,14 @@ class StatsContainer extends Component {
                         totalRushTds +=rushTds;
                         totalFumLost += fumLost;
                         totalTwoPtMade +=twoPtMade;
-                        this.state.chartData.labels.push(week);
-                        this.state.chartData.datasets.data.push(weeklyFantasyPoints)
+                        // this.state.chartData.labels.push(week);
+                        // this.state.chartData.datasets.data.push(weeklyFantasyPoints)
 
                         // let dataPoints = {week: week, points: weeklyFantasyPoints}
                         // this.state.weeklyFantasyPointsArr.push(dataPoints)
-
+                        if(key+1 === week) {
+                            console.log(true)
+                        }
                         return (
                             <div key={key} className="table-body">
                                 <div>{week}</div>

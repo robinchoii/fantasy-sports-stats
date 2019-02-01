@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Route, Link } from 'react-router-dom';
 import StatsContainer from './StatsContainer';
+import StatsTable from './StatsTable';
 
 class PlayerModal extends Component {
     constructor(props) {
@@ -42,7 +43,7 @@ class PlayerModal extends Component {
                         {this.props.years.map((year,key) => <Link to={`/wr/${first}-${last}-${id}/${year}`} key={key} onClick={() => this.handleYearChange(year, first, last, id)}><li>{year}</li></Link>)}
                     </ul>
                 </div>
-                <Route path="/wr/:first-:last-:id/:year" render={(props) => <StatsContainer {...props} years={this.props.years} gamelogs={this.state.gamelogs} convertToFantasyPoints={this.props.convertToFantasyPoints}selectedYear={this.state.selectedYear} /> } />
+                <Route path="/wr/:first-:last-:id/:year" render={(props) => <StatsTable {...props} years={this.props.years} gamelogs={this.state.gamelogs} convertToFantasyPoints={this.props.convertToFantasyPoints}selectedYear={this.state.selectedYear} /> } />
             </div>
         )
     }
