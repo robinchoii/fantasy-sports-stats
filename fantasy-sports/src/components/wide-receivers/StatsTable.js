@@ -1,4 +1,6 @@
 import React from 'react';
+import { Line } from 'react-chartjs-2'
+
 
 const StatsTable = (props) => {
     let totalPts = 0;
@@ -89,22 +91,23 @@ const StatsTable = (props) => {
                 })}
             </div>
             <div className='table-body'>
-                        <div>Totals</div>
-                        <div>{ totalPassYds }</div>
-                        <div>{ totalInt }</div>
-                        <div>{ totalPassTds }</div>
-                        <div>{ totalTargets }</div>
-                        <div>{ totalReceptions }</div>
-                        <div>{ totalRecYds }</div>
-                        <div>{ totalRecTds }</div>
-                        <div>{ totalRushYds }</div>
-                        <div>{ totalRushTds }</div>
-                        <div>{ totalFumLost }</div>
-                        <div>{ totalTwoPtMade }</div>
-                        <div>{ Math.ceil(totalPts * 100) / 100 }</div>
-                    </div>
+                <div>Totals</div>
+                <div>{ totalPassYds }</div>
+                <div>{ totalInt }</div>
+                <div>{ totalPassTds }</div>
+                <div>{ totalTargets }</div>
+                <div>{ totalReceptions }</div>
+                <div>{ totalRecYds }</div>
+                <div>{ totalRecTds }</div>
+                <div>{ totalRushYds }</div>
+                <div>{ totalRushTds }</div>
+                <div>{ totalFumLost }</div>
+                <div>{ totalTwoPtMade }</div>
+                <div>{ Math.ceil(totalPts * 100) / 100 }</div>
+            </div>
             <div className='graph'>
                 <h1>graph</h1>
+                <Line data={props.chartData} />
             </div>
         </div>
     )
