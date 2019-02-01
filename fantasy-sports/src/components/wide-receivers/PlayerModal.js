@@ -10,7 +10,8 @@ class PlayerModal extends Component {
         this.state = {
             selectedYear: '',
             gamelogs: [],
-            chartData: {}
+            chartData: {},
+            totals: {}
         }
     }
 
@@ -18,8 +19,12 @@ class PlayerModal extends Component {
 
         let updatedGamelogs = Object.assign({},this.state.gamelogs);
         let updatedChartData = Object.assign({},this.state.chartData);
+        let updatedTotals = Object.assign({},this.state.totals);
         let weeksPlayed = [];
         let weeklyPoints = [];
+        let totalRec = 0;
+        let totalRecYard = 0;
+        let totalRecTD = 0;
 
         updatedGamelogs = this.props.getPlayerGamelog(year, first, last, id)
 
@@ -48,6 +53,12 @@ class PlayerModal extends Component {
                     let twoPtMade = game.stats.twoPointAttempts.twoPtMade
 
                     let weeklyFantasyPoints = this.props.convertToFantasyPoints(passYds,passTds,int, receptions, recYds, recTds, rushYds, rushTds, fumLost, twoPtMade)
+                    totalRec += receptions
+                    totalRecYard += recYds
+                    totalRecTD += recTds
+                    updatedTotals.receptions = totalRec
+                    updatedTotals.yards = totalRecYard
+                    updatedTotals.touchdowns = totalRecTD
 
                     weeksPlayed.push(game.game.week)
                     weeklyPoints.push(weeklyFantasyPoints)
@@ -68,7 +79,8 @@ class PlayerModal extends Component {
                         ]
                 updatedChartData.datasets = datasets
                 this.setState({
-                    chartData: updatedChartData
+                    chartData: updatedChartData,
+                    totals: updatedTotals
                 })
 
 
@@ -86,7 +98,21 @@ class PlayerModal extends Component {
             <div>
                 <div>
                     <h1>{first} {last}</h1>
-                    <ul>
+                    <div className='player-card'>
+                        <div>
+                            <h3>Rec</h3>
+                            <h2>{this.state.totals.receptions}</h2>
+                        </div>
+                        <div>
+                            <h3>Yards</h3>
+                            <h2>{this.state.totals.yards}</h2>
+                        </div>
+                        <div>
+                            <h3>TD</h3>
+                            <h2>{this.state.totals.touchdowns}</h2>
+                        </div>
+                    </div>
+                    <ul id='years'>
                         {this.props.years.map((year,key) => <Link to={`/wr/${first}-${last}-${id}/${year}`} key={key} onClick={() => this.handleYearChange(year, first, last, id)}><li>{year}</li></Link>)}
                     </ul>
                 </div>

@@ -144,3 +144,14 @@ a {
 	grid-column: 11/-1;
 	background-color: orange;
 }
+
+.player-card {
+	display: grid;
+	grid-template-columns: repeat(3, 50px	)
+}
+
+#years {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	list-style-type: none;
+}
