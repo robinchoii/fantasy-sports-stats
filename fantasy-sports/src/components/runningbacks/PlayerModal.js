@@ -70,7 +70,7 @@ class PlayerModal extends Component {
                             {
                                 label: 'Total Points',
                                 data: weeklyPoints,
-                                fill: false,
+                                fill: true,
                                 borderColor: 'blue',
                                 pointBorderColor: 'red',
                                 pointBackgroundColor: 'red',
@@ -100,15 +100,15 @@ class PlayerModal extends Component {
                     <h1>{first} {last}</h1>
                     <div className='player-card'>
                         <div>
-                            <h3>CARRIES</h3>
+                            <h4>CARRIES</h4>
                             <h2>{this.state.totals.attempts}</h2>
                         </div>
                         <div>
-                            <h3>YARDS</h3>
+                            <h4>YARDS</h4>
                             <h2>{this.state.totals.yards}</h2>
                         </div>
                         <div>
-                            <h3>TOUCHDOWNS</h3>
+                            <h4>TOUCHDOWNS</h4>
                             <h2>{this.state.totals.touchdowns}</h2>
                         </div>
                     </div>

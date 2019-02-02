@@ -23,8 +23,8 @@ class App extends Component {
             <Route path='/qb' component={QuarterBackContainer} />
             <Route path='/wr' component={WideReceiverContainer} />
             <Route path='/rb' component={RunningBackContainer} />
-            <Route path='/te' component={TightEndContainer} />
-            <Route path='/settings' component={Settings} />
+            // <Route path='/te' component={TightEndContainer} />
+            // <Route path='/settings' component={Settings} />
           </Switch>
         </div>
       </BrowserRouter>

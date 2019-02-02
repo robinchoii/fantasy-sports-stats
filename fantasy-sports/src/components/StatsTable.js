@@ -106,7 +106,6 @@ const StatsTable = (props) => {
                 <div>{ Math.ceil(totalPts * 100) / 100 }</div>
             </div>
             <div className='graph'>
-                <h1>graph</h1>
                 <Line data={props.chartData} />
             </div>
         </div>

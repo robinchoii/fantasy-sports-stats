@@ -119,7 +119,6 @@ class StatsContainer extends Component {
                     </div>
                 </div>
                 <div>
-                    <h1>GRAPH</h1>
                     <Line data={this.props.chartData}/>
                 </div>
             </div>

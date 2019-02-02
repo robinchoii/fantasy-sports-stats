@@ -14,7 +14,7 @@ export default class QuarterBack extends React.Component {
         return (
             <div>
                 <ul>
-                    <Link to={`/qb/${this.props.firstName}-${this.props.lastName}-${this.props.playerID}`}><li>{this.props.lastName} {this.props.firstName}</li></Link>
+                    <Link to={`/qb/${this.props.firstName}-${this.props.lastName}-${this.props.playerID}`}><li>{this.props.lastName}, {this.props.firstName}</li></Link>
                 </ul>
             </div>
         );
