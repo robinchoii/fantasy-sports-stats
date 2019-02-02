@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
-import StatsContainer from '../wide-receivers/StatsContainer';
-import StatsTable from '../wide-receivers/StatsTable';
+import StatsContainer from '../StatsContainer';
+import StatsTable from '../StatsTable';
 
 class PlayerModal extends Component {
     constructor(props) {

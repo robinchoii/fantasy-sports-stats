@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Route, Link } from 'react-router-dom';
-import StatsContainer from './StatsContainer';
-import StatsTable from './StatsTable';
+import StatsContainer from '../StatsContainer';
+import StatsTable from '../StatsTable';
 
 class PlayerModal extends Component {
     constructor(props) {
