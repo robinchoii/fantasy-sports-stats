@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import './App.css';
-import QuarterBackContainer from './components/2017/quarterBackContainer';
+import QuarterBackContainer from './components/quarterbacks/QuarterBackContainer';
 import WideReceiverContainer from './components/wide-receivers/WideReceiverContainer';
 import RunningBackContainer from './components/2017/runningBackContainer';
 import TightEndContainer from './components/2017/tightEndContainer';
