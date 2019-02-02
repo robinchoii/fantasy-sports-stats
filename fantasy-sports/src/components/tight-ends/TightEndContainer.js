@@ -1,15 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
-import RunningBack from './RunningBack';
+import TightEnd from './TightEnd';
 import PlayerModal from './PlayerModal';
 
 
-export default class RunningBackContainer extends React.Component {
+export default class TightEndContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            RBs: [],
+            TEs: [],
             years: ['2014','2015','2016','2017', '2018'],
             scoring:  {
                 passYd: 25,
@@ -27,7 +27,7 @@ export default class RunningBackContainer extends React.Component {
     }
 
     componentDidMount = () => {
-        console.log('RB container mounted!')
+        console.log('TE container mounted!')
         let config = {
             auth: {
                 username: 'e1c3c9b7-346a-4e73-a4ea-dc799d',
@@ -35,26 +35,26 @@ export default class RunningBackContainer extends React.Component {
               },
         };
 
-        axios.get("https://api.mysportsfeeds.com/v2.0/pull/nfl/players.json?season=2014-regular-2018-regular&position=rb", config)
+        axios.get("https://api.mysportsfeeds.com/v2.0/pull/nfl/players.json?season=2014-regular-2018-regular&position=te", config)
             .then((response) => {
-                let updatedRBs = Object.assign([], this.state.RBs);
+                let updatedTEs = Object.assign([], this.state.TEs);
 
-                response.data.players.filter((player) => player.player.primaryPosition === 'RB').map((player,key) => {
-                    let runningback = {}
+                response.data.players.filter((player) => player.player.primaryPosition === 'TE').map((player,key) => {
+                    let tightend = {}
 
-                    runningback.key = key
-                    runningback.firstName = player.player.firstName
-                    runningback.lastName = player.player.lastName
-                    runningback.id = player.player.id
-                    // runningback.gamelogs = {}
+                    tightend.key = key
+                    tightend.firstName = player.player.firstName
+                    tightend.lastName = player.player.lastName
+                    tightend.id = player.player.id
+                    // tightend.gamelogs = {}
 
-                    updatedRBs.push(runningback);
+                    updatedTEs.push(tightend);
                 });
 
                 this.setState({
-                    RBs: updatedRBs
+                    TEs: updatedTEs
                 })
-                return updatedRBs
+                return updatedTEs
 
             })
             .catch((err) => {
@@ -104,11 +104,11 @@ export default class RunningBackContainer extends React.Component {
     render() {
         return (
             <div>
-                <h1>RUNNING BACKS 2014-2018</h1>
+                <h1>TIGHT ENDS 2014-2018</h1>
                 <div className='sub-content'>
                     <div className='wr-wrapper'>
-                        {this.state.RBs.map((player, key) =>
-                                <RunningBack
+                        {this.state.TEs.map((player, key) =>
+                                <TightEnd
                                     key={key}
                                     firstName={player.firstName}
                                     lastName={player.lastName}
@@ -116,7 +116,7 @@ export default class RunningBackContainer extends React.Component {
                                 />
                         )}
                     </div>
-                    <Route path="/rb/:first-:last-:id" render={(props) => <PlayerModal {...props} getPlayerGamelog={this.getPlayerGamelog} convertToFantasyPoints={this.convertToFantasyPoints} years={this.state.years} /> } />
+                    <Route path="/te/:first-:last-:id" render={(props) => <PlayerModal {...props} getPlayerGamelog={this.getPlayerGamelog} convertToFantasyPoints={this.convertToFantasyPoints} years={this.state.years} /> } />
                 </div>
             </div>
         );

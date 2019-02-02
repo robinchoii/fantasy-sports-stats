@@ -5,7 +5,7 @@ import './App.css';
 import QuarterBackContainer from './components/quarterbacks/QuarterBackContainer';
 import WideReceiverContainer from './components/wide-receivers/WideReceiverContainer';
 import RunningBackContainer from './components/runningbacks/RunningBackContainer';
-import TightEndContainer from './components/2017/tightEndContainer';
+import TightEndContainer from './components/tight-ends/TightEndContainer';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
 import Main from './components/Main';
