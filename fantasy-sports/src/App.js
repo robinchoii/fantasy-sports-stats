@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.css';
 import QuarterBackContainer from './components/quarterbacks/QuarterBackContainer';
 import WideReceiverContainer from './components/wide-receivers/WideReceiverContainer';
-import RunningBackContainer from './components/2017/runningBackContainer';
+import RunningBackContainer from './components/runningbacks/RunningBackContainer';
 import TightEndContainer from './components/2017/tightEndContainer';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
