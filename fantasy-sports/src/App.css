@@ -38,7 +38,7 @@
 		font-weight: 600;
 }
 
-.table {
+.table, .totals {
 	text-align: center;
 }
 
@@ -147,7 +147,16 @@ a {
 
 .player-card {
 	display: grid;
-	grid-template-columns: repeat(3, minmax(100px,1fr))
+	grid-template-columns: repeat(3, minmax(100px,1fr));
+}
+
+.table {
+	background-color: #ffffff;
+}
+.totals {
+	background-color: #f3f3f3;
+	font-weight: 600;
+	padding: 3px;
 }
 
 #years {

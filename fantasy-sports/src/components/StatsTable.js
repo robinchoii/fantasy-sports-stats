@@ -18,7 +18,7 @@ const StatsTable = (props) => {
 
     return (
         <div>
-            <div>
+            <div className='table'>
                 <div className="table-category">
                     <div></div>
                     <div id="passing">Passing</div>
@@ -90,7 +90,7 @@ const StatsTable = (props) => {
                     )
                 })}
             </div>
-            <div className='table-body'>
+            <div className='table-body totals'>
                 <div>Totals</div>
                 <div>{ totalPassYds }</div>
                 <div>{ totalInt }</div>
