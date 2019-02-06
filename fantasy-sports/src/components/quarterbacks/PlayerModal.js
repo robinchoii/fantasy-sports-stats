@@ -93,7 +93,7 @@ class PlayerModal extends Component {
         const { first, last, id } = this.props.match.params
 
         return (
-            <div>
+            <div className='playerModal'>
                 <div>
                     <h1>{first} {last}</h1>
                     <div className='player-card'>
@@ -106,7 +106,7 @@ class PlayerModal extends Component {
                             <h2>{this.state.totals.yards}</h2>
                         </div>
                         <div>
-                            <h3>Touchdowns</h3>
+                            <h3>TD</h3>
                             <h2>{this.state.totals.touchdowns}</h2>
                         </div>
                         <div>
