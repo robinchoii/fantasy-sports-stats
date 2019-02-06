@@ -96,7 +96,7 @@ class PlayerModal extends Component {
             <div>
                 <div>
                     <h1>{first} {last}</h1>
-                    <div className='player-card'>
+                    <div className='player-card highlights'>
                         <div>
                             <h3>YARDS</h3>
                             <h2>{this.state.totals.yards}</h2>

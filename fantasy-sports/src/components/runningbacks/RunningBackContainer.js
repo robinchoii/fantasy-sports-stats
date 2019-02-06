@@ -104,7 +104,7 @@ export default class RunningBackContainer extends React.Component {
     render() {
         return (
             <div className='main-component'>
-                <h1>RUNNING BACKS 2014-2018</h1>
+                <h1>Running Backs 2014-2018</h1>
                 <div className='sub-content'>
                     <div className='wr-wrapper'>
                         {this.state.RBs.map((player, key) =>
