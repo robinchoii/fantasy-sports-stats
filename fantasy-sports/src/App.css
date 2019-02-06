@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Bangers|Tenor+Sans');
+
 .App {
 	/*text-align: center;*/
 }
@@ -42,38 +44,14 @@
 	text-align: center;
 }
 
-.qb-wrapper {
-		display: grid;
-		grid-template-columns: 175px 1fr
-}
-
-.stats-container {
-		display: grid;
-		grid-template-areas:
-				'table graph'
-				'week graph'
-}
-
-.week-by-week-container {
-		grid-area: week;
-}
-
-.qb-table-container {
-		grid-area: table;
-}
-
-.line-chart-container {
-		grid-area: graph
-}
-
 a {
 	text-decoration: none;
 	color: black;
 }
 
 #root {
-	/*background-color: lemonchiffon;*/
 }
+
 #app {
 	display: grid;
 	grid-template-columns: repeat(12, auto);
@@ -87,12 +65,15 @@ a {
 	grid-area: header;
 	background-color: mediumseagreen;
 	text-align: center;
+	font-family: "Bangers", cursive;
 }
 
 .leftnav {
 	grid-area: leftnav;
 	width: auto;
 	background-color: #f2f2f2;
+	font-family: "Tenor+Sans", sans-serif;
+
 }
 	.navlinks {
 		text-align: center;
@@ -102,7 +83,6 @@ a {
 	}
 		.navlinks li {
 			padding: 15px;
-			/*border: 1px solid #4c4c4c;*/
 		}
 		.navlinks a {
 			font-size: 18px;
@@ -111,6 +91,8 @@ a {
 .main-container {
 	padding: 15px 0px 0px 15px;
 	grid-area: main;
+	background-color: beige;
+	font-family: "Tenor+Sans", sans-serif;
 }
 
 .sub-content {

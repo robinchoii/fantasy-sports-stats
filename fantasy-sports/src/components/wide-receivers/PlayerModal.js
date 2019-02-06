@@ -99,6 +99,10 @@ class PlayerModal extends Component {
                     <h1>{first} {last}</h1>
                     <div className='player-card'>
                         <div>
+                            <h3>Year</h3>
+                            <h2>{this.state.selectedYear}</h2>
+                        </div>
+                        <div>
                             <h3>Rec</h3>
                             <h2>{this.state.totals.receptions}</h2>
                         </div>

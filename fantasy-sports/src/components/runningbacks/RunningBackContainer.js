@@ -103,7 +103,7 @@ export default class RunningBackContainer extends React.Component {
 
     render() {
         return (
-            <div className='main-component'>
+            <div className='main-container'>
                 <h1>Running Backs 2014-2018</h1>
                 <div className='sub-content'>
                     <div className='wr-wrapper'>

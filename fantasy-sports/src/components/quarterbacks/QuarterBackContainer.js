@@ -101,7 +101,7 @@ export default class QuarterBackContainer extends Component {
     }
     render() {
         return (
-            <div className='main-component'>
+            <div className='main-container'>
                 <h1>Quarterbacks 2014-2018</h1>
                 <div className='sub-content'>
                     <div className='wr-wrapper'>
