@@ -102,7 +102,7 @@ a {
 	}
 		.navlinks li {
 			padding: 15px;
-			border: 1px solid #4c4c4c;
+			/*border: 1px solid #4c4c4c;*/
 		}
 		.navlinks a {
 			font-size: 18px;
@@ -163,4 +163,36 @@ a {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	list-style-type: none;
+}
+
+
+@media only screen and (max-width: 1068px) {
+
+}
+
+/*small vp*/
+@media only screen and (max-width: 735px) {
+	#app {
+		grid-template-areas:
+			"header"
+			"leftnav"
+			"main";
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto 1fr;
+	}
+
+	.header {
+		grid-row: 1;
+	}
+	.leftnav {
+		grid-row: 2;
+	}
+	.main {
+		grid-row: 3;
+	}
+	.leftnav ul {
+		display: flex;
+		justify-content: space-around;
+	}
+
 }
