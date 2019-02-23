@@ -107,7 +107,7 @@ export default class WideReceiverContainer extends React.Component {
             <div className='main-container'>
                 <h1>Wide Receivers 2014-2018</h1>
                 <div className='sub-content'>
-                    <div className='wr-wrapper'>
+                    <div className='wr-wrapper position-wrapper'>
                         {this.state.WRs.map((player, key) =>
                                 <WideReceiver
                                     key={key}

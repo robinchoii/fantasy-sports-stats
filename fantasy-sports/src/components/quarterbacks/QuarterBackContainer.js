@@ -104,7 +104,7 @@ export default class QuarterBackContainer extends Component {
             <div className='main-container'>
                 <h1>Quarterbacks 2014-2018</h1>
                 <div className='sub-content'>
-                    <div className='wr-wrapper'>
+                    <div className='wr-wrapper position-wrapper'>
                         {this.state.QBs.map((player, key) =>
                                 <QuarterBack
                                     key={key}

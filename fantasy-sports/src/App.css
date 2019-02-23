@@ -17,7 +17,7 @@
 }
 
 .App-title {
-	font-size: 4em;
+	font-size: 3em;
 	display: flex;
 	align-items: center;
 }
@@ -61,6 +61,7 @@ a {
 	grid-template-areas:
 		"header header header header header header header header header header header header"
 		"leftnav main main main main main main main main main main main"
+		"footer footer footer footer footer footer footer footer footer footer footer footer"
 }
 
 .header {
@@ -68,6 +69,11 @@ a {
 	background-color: mediumseagreen;
 	font-family: "Bangers", cursive;
 	display: flex;
+}
+.footer {
+	grid-area: footer;
+	background-color: #f2f2f2;
+
 }
 
 .leftnav {
@@ -160,7 +166,8 @@ a {
 		grid-template-areas:
 			"header"
 			"leftnav"
-			"main";
+			"main"
+			"footer";
 		grid-template-columns: 1fr;
 		grid-template-rows: auto auto 1fr;
 	}
@@ -196,18 +203,39 @@ a {
 @media only screen and (max-width: 1068px) {
     .full-logo {
 		background-image: url("../src/images/icon_football_black_160w.png");
-		background-size: 80px 90px;
-	    width: 80px;
-	    height: 90px;
+		background-size: 60px 70px;
+	    width: 60px;
+	    height: 70px;
 	    background-repeat: no-repeat;
     }
     .App-title {
-    	font-size: 3em;
+    	font-size: 2.5em;
     }
 }
 
 @media only screen and (max-width: 735px) {
-    .full-logo {
-
+	.full-logo {
+		background-image: url("../src/images/icon_football_black_160w.png");
+		background-size: 40px 45px;
+	    width: 40px;
+	    height: 45px;
+	    background-repeat: no-repeat;
+	    margin: 5px 10px;
     }
+	.App-title {
+    	font-size: 1.75em;
+    }
+}
+.sub-content {
+	overflow:hidden;
+}
+.position-wrapper {
+	height: 750px;
+	overflow-y: scroll;
+}
+ul li {
+	list-style-type: none;
+}
+ul {
+	padding-left: 0;
 }

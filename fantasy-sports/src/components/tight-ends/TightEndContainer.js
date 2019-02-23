@@ -106,7 +106,7 @@ export default class TightEndContainer extends React.Component {
             <div className='main-container'>
                 <h1>Tight Ends 2014-2018</h1>
                 <div className='sub-content'>
-                    <div className='wr-wrapper'>
+                    <div className='wr-wrapper position-wrapper'>
                         {this.state.TEs.map((player, key) =>
                                 <TightEnd
                                     key={key}

@@ -8,6 +8,7 @@ import RunningBackContainer from './components/runningbacks/RunningBackContainer
 import TightEndContainer from './components/tight-ends/TightEndContainer';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Main from './components/Main';
 import Settings from './components/Settings';
 
@@ -26,6 +27,7 @@ class App extends Component {
             // <Route path='/te' component={TightEndContainer} />
             // <Route path='/settings' component={Settings} />
           </Switch>
+          <Footer />
         </div>
       </BrowserRouter>
     );
