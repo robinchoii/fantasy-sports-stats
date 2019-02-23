@@ -17,7 +17,9 @@
 }
 
 .App-title {
-	font-size: 1.5em;
+	font-size: 4em;
+	display: flex;
+	align-items: center;
 }
 
 .App-intro {
@@ -64,8 +66,8 @@ a {
 .header {
 	grid-area: header;
 	background-color: mediumseagreen;
-	text-align: center;
 	font-family: "Bangers", cursive;
+	display: flex;
 }
 
 .leftnav {
@@ -152,11 +154,6 @@ a {
 	padding: 0;
 }
 
-
-@media only screen and (max-width: 1068px) {
-
-}
-
 /*small vp*/
 @media only screen and (max-width: 735px) {
 	#app {
@@ -184,4 +181,33 @@ a {
 		justify-content: space-around;
 	}
 
+}
+
+
+.full-logo {
+	background-image: url("../src/images/full_football_black_970w.png");
+	background-size: 420px 100px;
+    width: 420px;
+    height: 100px;
+    background-repeat: no-repeat;
+    margin: 15px 30px;
+}
+
+@media only screen and (max-width: 1068px) {
+    .full-logo {
+		background-image: url("../src/images/icon_football_black_160w.png");
+		background-size: 80px 90px;
+	    width: 80px;
+	    height: 90px;
+	    background-repeat: no-repeat;
+    }
+    .App-title {
+    	font-size: 3em;
+    }
+}
+
+@media only screen and (max-width: 735px) {
+    .full-logo {
+
+    }
 }
