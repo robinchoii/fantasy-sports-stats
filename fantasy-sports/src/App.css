@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Bangers|Tenor+Sans');
-
+#root {
+	max-width: 1920px;
+	margin: 0 auto;
+}
 .App {
 	/*text-align: center;*/
+	/*max-width: 1400px;*/
+	/*margin: 0 auto;*/
 }
 
 .App-logo {
@@ -32,12 +37,6 @@
 }
 
 
-.table-header, .table-body {
-	display: grid;
-	grid-template-columns: repeat(10, 65px);
-
-}
-
 .table-header {
 		font-weight: 600;
 }
@@ -56,9 +55,9 @@ a {
 
 #app {
 	display: grid;
-    grid-template-columns: 100px 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: "header header" "leftnav main" "footer footer";
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "header header" "leftnav main" "footer footer";
 }
 .header {
 	grid-area: header;
@@ -68,8 +67,7 @@ a {
 }
 .footer {
 	grid-area: footer;
-	background-color: #f2f2f2;
-
+	background-color: #bababa;;
 }
 
 .leftnav {
@@ -104,13 +102,14 @@ a {
 }
 
 .table-header, .table-body {
-	grid-template-columns: repeat(13, 45px);
+	display: grid;
+	grid-template-columns: repeat(13, 65px);
 	font-size: 12px;
 }
 
 .table-category {
 	display: grid;
-	grid-template-columns: repeat(13, 45px);
+	grid-template-columns: repeat(13, 65px);
 	text-align: center;
 }
 
@@ -132,7 +131,7 @@ a {
 }
 
 .playerModal {
-	min-width: 360px;
+	margin-left: 15px;
 }
 .player-card {
 	display: flex;
@@ -196,6 +195,34 @@ a {
     margin: 15px 30px;
 }
 
+.sub-content {
+	/*overflow:hidden;*/
+}
+.position-wrapper {
+	height: 1005px;
+	overflow-y: scroll;
+}
+
+ul li {
+	list-style-type: none;
+}
+ul {
+	padding-left: 0;
+}
+
+.data-wrapper {
+}
+
+.graph {
+
+}
+
+
+/***********RESPONSIVE*********/
+@media only screen and (max-width: 1068px) {
+
+}
+
 @media only screen and (max-width: 1068px) {
     .full-logo {
 		background-image: url("../src/images/icon_football_black_160w.png");
@@ -209,6 +236,7 @@ a {
     }
 }
 
+
 @media only screen and (max-width: 735px) {
 	.full-logo {
 		background-image: url("../src/images/icon_football_black_160w.png");
@@ -221,17 +249,26 @@ a {
 	.App-title {
     	font-size: 1.75em;
     }
-}
-.sub-content {
-	overflow:hidden;
-}
-.position-wrapper {
-	height: 750px;
-	overflow-y: scroll;
-}
-ul li {
-	list-style-type: none;
-}
-ul {
-	padding-left: 0;
+  .table-header, .table-body, .table-category {
+		grid-template-columns: repeat(13, 1fr);
+		font-size: 10px;
+	}
+	.table-category {
+		font-size: 10px;
+	}
+
+	.main-container {
+		padding: 5px;
+	}
+
+	.main-container h1 {
+		font-size: 1.5em;
+	}
+	.playerModal {
+		margin-left: 0;
+	}
+	.position-wrapper {
+		height: 600px;
+		overflow-y: scroll;
+	}
 }

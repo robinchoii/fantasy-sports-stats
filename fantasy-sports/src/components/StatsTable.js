@@ -17,7 +17,7 @@ const StatsTable = (props) => {
     let totalTwoPtMade = 0;
 
     return (
-        <div>
+        <div className='data-wrapper'>
             <div className='table'>
                 <div className="table-category">
                     <div></div>
@@ -89,21 +89,21 @@ const StatsTable = (props) => {
                         </div>
                     )
                 })}
-            </div>
-            <div className='table-body totals'>
-                <div>Totals</div>
-                <div>{ totalPassYds }</div>
-                <div>{ totalInt }</div>
-                <div>{ totalPassTds }</div>
-                <div>{ totalTargets }</div>
-                <div>{ totalReceptions }</div>
-                <div>{ totalRecYds }</div>
-                <div>{ totalRecTds }</div>
-                <div>{ totalRushYds }</div>
-                <div>{ totalRushTds }</div>
-                <div>{ totalFumLost }</div>
-                <div>{ totalTwoPtMade }</div>
-                <div>{ Math.ceil(totalPts * 100) / 100 }</div>
+                <div className='table-body totals'>
+                    <div>Totals</div>
+                    <div>{ totalPassYds }</div>
+                    <div>{ totalInt }</div>
+                    <div>{ totalPassTds }</div>
+                    <div>{ totalTargets }</div>
+                    <div>{ totalReceptions }</div>
+                    <div>{ totalRecYds }</div>
+                    <div>{ totalRecTds }</div>
+                    <div>{ totalRushYds }</div>
+                    <div>{ totalRushTds }</div>
+                    <div>{ totalFumLost }</div>
+                    <div>{ totalTwoPtMade }</div>
+                    <div>{ Math.ceil(totalPts * 100) / 100 }</div>
+                </div>
             </div>
             <div className='graph'>
                 <Line data={props.chartData} />
