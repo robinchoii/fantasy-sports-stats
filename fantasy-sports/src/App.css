@@ -56,14 +56,10 @@ a {
 
 #app {
 	display: grid;
-	grid-template-columns: repeat(12, auto);
-	grid-template-rows: auto;
-	grid-template-areas:
-		"header header header header header header header header header header header header"
-		"leftnav main main main main main main main main main main main"
-		"footer footer footer footer footer footer footer footer footer footer footer footer"
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "header header" "leftnav main" "footer footer";
 }
-
 .header {
 	grid-area: header;
 	background-color: mediumseagreen;
