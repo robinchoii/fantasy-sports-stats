@@ -1,4 +1,5 @@
 import React from 'react';
+import Settings from './Settings';
 
 export default class Main extends React.Component {
     render() {
@@ -9,6 +10,7 @@ export default class Main extends React.Component {
                     <h4>Look for trends!</h4>
                     <i className="fas fa-4x fa-chart-line"></i>
                 </div>
+                <Settings />
             </div>
         );
     }
