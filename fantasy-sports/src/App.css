@@ -241,7 +241,7 @@ ul {
 
 .scoring-type div {
 	border: 2px solid black;
-	padding: 15px;
+	padding: 10px;
 	margin: 5px;
 	border-radius: 10px;
 	background-color: #5ab175;
@@ -302,5 +302,12 @@ ul {
 	.position-wrapper {
 		height: 600px;
 		overflow-y: scroll;
+	}
+	.scoring-type {
+		justify-content: space-between;
+	}
+	.scoring-type div {
+		width: 100px;
+		text-align: center;
 	}
 }
