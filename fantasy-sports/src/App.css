@@ -219,25 +219,40 @@ ul {
 
 .settings-table {
 	display: grid;
-	grid-template-columns: repeat(2, 200px);
+	grid-template-columns: repeat(2, 1fr);
 }
 .settings-table-header {
 	font-size: 1.25em;
 	padding: 10px;
 	font-weight: 600;
-	background-color: blue
+	background-color: #f49e2c
 
 }
 
 .settings-table-body  div{
 	border-top: 1px solid #bbbbbbbb;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding: 10px;
+	background-color: #ffffff;
+}
+
+.scoring-type {
+	display: flex;
+}
+
+.scoring-type div {
+	border: 2px solid black;
+	padding: 15px;
+	margin: 5px;
+	border-radius: 10px;
+	background-color: #5ab175;
+	color: white;
 }
 
 /***********RESPONSIVE*********/
-@media only screen and (max-width: 1068px) {
-
+@media only screen and (min-width: 735px) {
+	.settings-table {
+		grid-template-columns: repeat(2, 300px);
+	}
 }
 
 @media only screen and (max-width: 1068px) {

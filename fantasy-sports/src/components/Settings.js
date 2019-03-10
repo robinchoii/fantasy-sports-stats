@@ -21,10 +21,41 @@ export default class Settings extends React.Component {
         }
     }
 
+    handleScoringChange = (event) => {
+        let updatedSettings = Object.assign({}, this.state.settings)
+
+        if (event.target.innerHTML === ".5 PPR") {
+            updatedSettings.reception = .5
+
+            this.setState({
+                settings: updatedSettings
+            })
+        } else if(event.target.innerHTML === "1 PPR") {
+            updatedSettings.reception = 1
+
+            this.setState({
+                settings: updatedSettings
+            })
+        } else {
+            updatedSettings.reception = 0
+
+            this.setState({
+                settings: updatedSettings
+            })
+
+        }
+
+    }
+
     render() {
         return (
             <div settings-table-wrapper>
-                <h2>Scoring</h2>
+                <h2>Yahoo Default Scoring</h2>
+                <div className="scoring-type">
+                    <div onClick={this.handleScoringChange}>Standard</div>
+                    <div onClick={this.handleScoringChange}>.5 PPR</div>
+                    <div onClick={this.handleScoringChange}>1 PPR</div>
+                </div>
                 <div className='settings-table'>
                     <div className='settings-table-header'>
                         <div>Offense</div>
@@ -48,7 +79,7 @@ export default class Settings extends React.Component {
                         <div>{ this.state.settings.passYd } yards per point</div>
                         <div>{ this.state.settings.passTD }</div>
                         <div>{ this.state.settings.int }</div>
-                        <div>{ this.state.settings.rushYd }</div>
+                        <div>{ this.state.settings.rushYd } yards per point</div>
                         <div>{ this.state.settings.rushTD }</div>
                         <div>{ this.state.settings.reception }</div>
                         <div>{ this.state.settings.recYd }</div>
