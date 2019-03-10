@@ -9,6 +9,7 @@ const Navigation = () => {
                 <NavLink to='/wr'><li>WR</li></NavLink>
                 <NavLink to='/rb'><li>RB</li></NavLink>
                 <NavLink to='/te'><li>TE</li></NavLink>
+                <NavLink to='/settings'><li>Settings</li></NavLink>
             </ul>
         </div>
     )

@@ -3,26 +3,14 @@ import axios from 'axios';
 import { Route } from 'react-router-dom';
 import RunningBack from './RunningBack';
 import PlayerModal from './PlayerModal';
-
+import { MyContext } from '../../App';
 
 export default class RunningBackContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             RBs: [],
-            years: ['2014','2015','2016','2017', '2018'],
-            scoring:  {
-                passYd: 25,
-                passTD: 4,
-                int: -1,
-                reception: .5,
-                recYd: 10,
-                recTD: 6,
-                rushYd : 10,
-                rushTD: 6,
-                fumbleLost: -2,
-                twoPoint: 2
-            },
+            years: ['2014','2015','2016','2017', '2018']
         }
     }
 
@@ -62,22 +50,7 @@ export default class RunningBackContainer extends React.Component {
             })
 
     }
-    convertToFantasyPoints = (passYds, passTds, int, rec, recYds, recTds, rushYds, rushTds, fumLost, twoPoint ) => {
-        let fantasyPoints = 0;
 
-        fantasyPoints += passYds / this.state.scoring.passYd;
-        fantasyPoints += passTds * this.state.scoring.passTD;
-        fantasyPoints += int * this.state.scoring.int;
-        fantasyPoints += rec * this.state.scoring.reception;
-        fantasyPoints += recYds / this.state.scoring.recYd;
-        fantasyPoints += recTds * this.state.scoring.recTD;
-        fantasyPoints += rushYds / this.state.scoring.rushYd;
-        fantasyPoints += rushTds * this.state.scoring.rushTD;
-        fantasyPoints += fumLost * this.state.scoring.fumbleLost;
-        fantasyPoints += twoPoint * this.state.scoring.twoPoint;
-
-        return Math.ceil(fantasyPoints * 100) / 100;
-    }
     getPlayerGamelog = (year, first, last, id) => {
         console.log("getting game logs")
 
@@ -116,7 +89,11 @@ export default class RunningBackContainer extends React.Component {
                                 />
                         )}
                     </div>
-                    <Route path="/rb/:first-:last-:id" render={(props) => <PlayerModal {...props} getPlayerGamelog={this.getPlayerGamelog} convertToFantasyPoints={this.convertToFantasyPoints} years={this.state.years} /> } />
+                    <MyContext.Consumer>
+                        {(context)=> (
+                            <Route path="/rb/:first-:last-:id" render={(props) => <PlayerModal {...props} getPlayerGamelog={this.getPlayerGamelog} convertToFantasyPoints={context.convertToFantasyPoints} years={this.state.years} /> } />
+                        )}
+                    </MyContext.Consumer>
                 </div>
             </div>
         );

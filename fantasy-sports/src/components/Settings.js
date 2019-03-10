@@ -5,7 +5,7 @@ const Settings = () =>  {
     return (
         <MyContext.Consumer>
             {(context) => (
-                <div settings-table-wrapper>
+                <div className='settings-table-wrapper'>
                     <h2>Yahoo Default Scoring</h2>
                     <div className="scoring-type">
                         <div onClick={context.handleScoringChange}>Standard</div>
@@ -45,8 +45,8 @@ const Settings = () =>  {
                         </div>
                     </div>
                 </div>
-        )}
-    </MyContext.Consumer>
+            )}
+        </MyContext.Consumer>
     );
 }
 

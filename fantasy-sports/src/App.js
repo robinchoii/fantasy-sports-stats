@@ -60,6 +60,22 @@ class SettingsProvider extends Component {
 
                 }
 
+            },
+            convertToFantasyPoints: (passYds, passTds, int, rec, recYds, recTds, rushYds, rushTds, fumLost, twoPoint ) => {
+                let fantasyPoints = 0;
+
+                fantasyPoints += passYds / this.state.settings.passYd;
+                fantasyPoints += passTds * this.state.settings.passTD;
+                fantasyPoints += int * this.state.settings.int;
+                fantasyPoints += rec * this.state.settings.reception;
+                fantasyPoints += recYds / this.state.settings.recYd;
+                fantasyPoints += recTds * this.state.settings.recTD;
+                fantasyPoints += rushYds / this.state.settings.rushYd;
+                fantasyPoints += rushTds * this.state.settings.rushTD;
+                fantasyPoints += fumLost * this.state.settings.fumbleLost;
+                fantasyPoints += twoPoint * this.state.settings.twoPoint;
+
+                return Math.ceil(fantasyPoints * 100) / 100;
             }
 
             }}>
@@ -83,7 +99,7 @@ class App extends Component {
                 <Route path='/wr' component={WideReceiverContainer} />
                 <Route path='/rb' component={RunningBackContainer} />
                 // <Route path='/te' component={TightEndContainer} />
-                // <Route path='/settings' component={Settings} />
+                <Route path='/settings' component={Settings} />
               </Switch>
             <Footer />
           </div>
